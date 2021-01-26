@@ -5,10 +5,13 @@
  */
 package TicTacToe;
 
+import javafx.fxml.FXML;
+import javafx.scene.layout.GridPane;
 /**
  *
  * @author luoph
  */
 public class TicTacToeController {
-    
+   
+    @FXML private GridPane gamePane;
 }

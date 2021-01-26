@@ -22,11 +22,11 @@ public class TicTacToe extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("TicTacToeFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("TicTacToeLoginFXML.fxml"));
         
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 700, 900);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
