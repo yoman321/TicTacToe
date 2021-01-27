@@ -21,20 +21,20 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#onclickBoard" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="239.0" prefWidth="239.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Button>
             <!--GridPane.columnIndex="1" GridPane.rowIndex="1"-->
-            <Button mnemonicParsing="false" onAction="#onclickBoard" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" text="Button" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" text="Button" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" text="Button" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="218.0" prefWidth="234.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="224.0" prefWidth="234.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="230.0" prefWidth="241.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="231.0" prefWidth="244.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="229.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="231.0" prefWidth="236.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="238.0" prefWidth="255.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="228.0" prefWidth="261.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>
