@@ -25,6 +25,7 @@ public class TicTacToeLoginController {
     //Create fxml variables
     @FXML private Text proceedText;
     @FXML private Pane loginPane;
+    
     public void initialize() throws Exception{
         
         //Create animation 
