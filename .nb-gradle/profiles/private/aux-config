@@ -5,12 +5,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
             
-      <group/>
+      <group>
+                
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/src/main/java/TicTacToe/TicTacToe.java</file>
+                
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/src/main/resources/TicTacToe/TicTacToeFXML.fxml</file>
+                
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/src/main/java/TicTacToe/TicTacToeController.java</file>
+              
+      </group>
           
     </open-files>
     <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-      <group/>
-    </open-files>
   </auxiliary>
 </gradle-project-properties>

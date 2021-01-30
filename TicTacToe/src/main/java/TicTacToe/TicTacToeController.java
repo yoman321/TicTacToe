@@ -22,12 +22,14 @@ public class TicTacToeController {
     
     //Create variables
     private boolean playerTurn = true;
-    private Text character = new Text("X");
     
     public void initialize(){
         
     }
     public void onclickBoard(ActionEvent e){
+        
+        //Create variables
+        Text character = new Text("X");
         
         //Create button and coordinates
         Button btn = (Button)e.getSource();
@@ -39,15 +41,16 @@ public class TicTacToeController {
         
         //Change character 
         if (playerTurn){
-            out.println(character);//test
             character.setText("X");
-            
+            playerTurn = false;
         }
-        else
+        else{
             character.setText("O");
+            playerTurn = true;
+        }
         
         //Remove button and put character
-//        board.getChildren().remove(btn);
+        board.getChildren().remove(btn);
         board.add(character, colIndex, rowIndex);
     }
 }
