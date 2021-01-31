@@ -11,6 +11,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import static java.lang.System.out;
+import javafx.scene.Parent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 /**
  *
  * @author luoph
@@ -32,21 +37,22 @@ public class TicTacToeController {
             }
         }
     }
-    public void onclickBoard(ActionEvent e){
+    public void onclickBoard(ActionEvent actionEvent) throws Exception{
         
+
         //Create variables
         Text textCharacter = new Text("X");
         String character = "";
+       
         
         //Create button and coordinates
-        Button btn = (Button)e.getSource();
+        Button btn = (Button)actionEvent.getSource();
         out.println(btn.getText());//test
         out.println(board.getRowIndex(btn));//test
         out.println(board.getColumnIndex(btn));//test
         int rowIndex = board.getRowIndex(btn);
         int colIndex = board.getColumnIndex(btn);
-      
-        
+
         //Change character 
         if (playerTurn){
             character = "X";
@@ -66,25 +72,20 @@ public class TicTacToeController {
         }
         else
             turnText.setText("Turn: O");
-        
-        //Remove button and put character
-        board.getChildren().remove(btn);
-        board.add(textCharacter, colIndex, rowIndex);
-        
+
         //Add character to baord and check for win
         boardArray[rowIndex][colIndex] = character;
-        for (int i=0; i<boardArray.length; i++){
-            for (int j=0; j<boardArray[i].length; j++){
-                out.print(boardArray[i][j]+" ");
-            }
-            out.println();
-        }
         if (winCon(boardArray) == 1){
             out.println("X won");//text
+            winScene(actionEvent);
         }
         if (winCon(boardArray) == 2){
             out.println("O won");//text
+            winScene(actionEvent);
         }
+        //Remove button and put character
+        board.add(textCharacter, colIndex, rowIndex);
+        board.getChildren().remove(btn);
     }
     //Create win method
     public int winCon(String[][] boardArray){
@@ -169,5 +170,15 @@ public class TicTacToeController {
             }
         }
         return 0;
+    }
+    //Create win scene
+    public void winScene(ActionEvent e) throws Exception{
+        
+        Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeWinFXML.fxml"));
+        Scene winScene = new Scene(nextPane);
+        
+        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+        stage.setScene(winScene);
+        stage.show();
     }
 }
