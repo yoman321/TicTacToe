@@ -25,6 +25,7 @@ public class TicTacToeController {
     //Create fxml variables
     @FXML private GridPane board;
     @FXML private Text turnText;
+    @FXML private Text winnerText;
     
     //Create variables
     private boolean playerTurn = true;
@@ -38,8 +39,7 @@ public class TicTacToeController {
         }
     }
     public void onclickBoard(ActionEvent actionEvent) throws Exception{
-        
-
+      
         //Create variables
         Text textCharacter = new Text("X");
         String character = "";
@@ -77,15 +77,25 @@ public class TicTacToeController {
         boardArray[rowIndex][colIndex] = character;
         if (winCon(boardArray) == 1){
             out.println("X won");//text
-            winScene(actionEvent);
+            winScene(actionEvent, "X");
+            
         }
         if (winCon(boardArray) == 2){
             out.println("O won");//text
-            winScene(actionEvent);
+            winScene(actionEvent, "O");
         }
         //Remove button and put character
         board.add(textCharacter, colIndex, rowIndex);
         board.getChildren().remove(btn);
+    }
+    //Create main menu button
+    public void onclickBack(ActionEvent e) throws Exception{
+        Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeFXML.fxml"));
+        Scene winScene = new Scene(nextPane);
+        
+        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+        stage.setScene(winScene);
+        stage.show();
     }
     //Create win method
     public int winCon(String[][] boardArray){
@@ -172,13 +182,30 @@ public class TicTacToeController {
         return 0;
     }
     //Create win scene
-    public void winScene(ActionEvent e) throws Exception{
+    public void winScene(ActionEvent e, String character) throws Exception{    
         
-        Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeWinFXML.fxml"));
+        //Move to next scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TicTacToeWinFXML.fxml"));
+        Parent nextPane = loader.load();
         Scene winScene = new Scene(nextPane);
+        
+        TicTacToeWinController controller = loader.getController();
+        controller.setWinText(character);
         
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         stage.setScene(winScene);
         stage.show();
+        
+//        Parent root = new FXMLLoader(getClass().getResource("TicTacToeWinFXML.fxml")).load();
+//        Scene winScene = new Scene(root);
+//        
+//        TicTacToeWinController controller = (new FXMLLoader(getClass().getResource("TicTacToeWinFXML.fxml"))).getController();
+//        controller.setWinText(character);
+//        
+//        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+//        stage.setScene(winScene);
+//        stage.show();
+       
     }
+
 }
