@@ -195,16 +195,6 @@ public class TicTacToeController {
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         stage.setScene(winScene);
         stage.show();
-        
-//        Parent root = new FXMLLoader(getClass().getResource("TicTacToeWinFXML.fxml")).load();
-//        Scene winScene = new Scene(root);
-//        
-//        TicTacToeWinController controller = (new FXMLLoader(getClass().getResource("TicTacToeWinFXML.fxml"))).getController();
-//        controller.setWinText(character);
-//        
-//        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-//        stage.setScene(winScene);
-//        stage.show();
        
     }
 

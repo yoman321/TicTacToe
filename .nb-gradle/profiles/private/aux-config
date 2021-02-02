@@ -4,7 +4,17 @@
   <auxiliary>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-      <group/>
+      <group>
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/src/main/resources/TicTacToe/TicTacToeWinFXML.fxml</file>
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/build/resources/main/TicTacToe/TicTacToeWinFXML.fxml</file>
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/src/main/java/TicTacToe/TicTacToe.java</file>
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/src/main/java/TicTacToe/TicTacToeLoginController.java</file>
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/build/resources/main/TicTacToe/TicTacToeMenuFXML.fxml</file>
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/src/main/java/TicTacToe/TicTacToeMenuController.java</file>
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/build/resources/main/TicTacToe/TicTacToeLoginFXML.fxml</file>
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/src/main/java/TicTacToe/TicTacToeWinController.java</file>
+        <file>file:/C:/Users/luoph/Desktop/TicTacToe/TicTacToe/TicTacToe/src/main/java/TicTacToe/TicTacToeController.java</file>
+      </group>
     </open-files>
     <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">

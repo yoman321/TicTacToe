@@ -30,7 +30,7 @@ public class TicTacToeWinController {
     }
      //Create main menu button
     public void onclickBack(ActionEvent e) throws Exception{
-        Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeFXML.fxml"));
+        Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeMenuFXML.fxml"));
         Scene winScene = new Scene(nextPane);
         
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();

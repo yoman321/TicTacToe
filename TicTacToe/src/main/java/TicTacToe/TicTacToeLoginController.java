@@ -37,7 +37,7 @@ public class TicTacToeLoginController {
         ft.play();
         
         //Enable pane change
-        Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeFXML.fxml"));
+        Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeMenuFXML.fxml"));
         loginPane.setOnMousePressed(e -> {
             Scene boardScene = new Scene (nextPane);
         
