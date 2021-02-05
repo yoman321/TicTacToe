@@ -20,11 +20,7 @@ import javafx.scene.text.Text;
 public class TicTacToeWinController {
     
     @FXML private Text winnerText;
-    public void initialize(){
-        
-//        Text u = (Text) stage.getUserData();
-
-    }
+    
     public void setWinText(String character){
         winnerText.setText("Winner: "+character);
     }

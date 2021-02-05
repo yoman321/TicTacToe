@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TicTacToe.TicTacToeMenuController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TicTacToe.TicTacToeMenuController">
    <children>
       <Pane layoutY="6.0" prefHeight="900.0" prefWidth="700.0">
          <children>
@@ -20,12 +20,17 @@
                   <Font name="System Bold" size="29.0" />
                </font>
             </Text>
-            <Button layoutX="311.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickRecords" text="Records">
+            <Button layoutX="311.0" layoutY="643.0" mnemonicParsing="false" onAction="#onClickRecords" text="Records">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
             <Button layoutX="311.0" layoutY="569.0" mnemonicParsing="false" onAction="#onClickStart" prefHeight="37.0" prefWidth="78.0" text="Start ">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="311.0" layoutY="716.0" mnemonicParsing="false" onAction="#onClickExit" prefHeight="37.0" prefWidth="78.0" text="Exit">
                <font>
                   <Font size="16.0" />
                </font>

@@ -29,7 +29,16 @@ public class TicTacToeMenuController {
         stage.setScene(boardScene);
         stage.show();
     }
-    public void onClickRecords(ActionEvent e){
+    public void onClickRecords(ActionEvent e) throws Exception{
+        Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeRecordsFXML.fxml"));
+        Scene recordsScene = new Scene (nextPane);
         
+        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+        stage.setScene(recordsScene);
+        stage.show();
+    
+    }
+    public void onClickExit(){
+        System.exit(0);
     }
 }

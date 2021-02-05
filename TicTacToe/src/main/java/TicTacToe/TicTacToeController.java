@@ -25,7 +25,6 @@ public class TicTacToeController {
     //Create fxml variables
     @FXML private GridPane board;
     @FXML private Text turnText;
-    @FXML private Text winnerText;
     
     //Create variables
     private boolean playerTurn = true;
