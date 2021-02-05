@@ -15,6 +15,8 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.TextField;
 import static java.lang.System.out;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -39,12 +41,6 @@ public class TicTacToeMenuController {
         mainPane.setVisible(false);
         namePane.setVisible(true);
         
-//        Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeFXML.fxml"));
-//        Scene boardScene = new Scene (nextPane);
-//        
-//        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-//        stage.setScene(boardScene);
-//        stage.show();
     }
     public void onClickRecords(ActionEvent e) throws Exception{
         Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeRecordsFXML.fxml"));
@@ -60,16 +56,31 @@ public class TicTacToeMenuController {
     }
     //Move to next scene while keeping player names
     public void onClickContinue(ActionEvent e) throws Exception{
+        if (String.valueOf(playerX.getText()).equals(" ")){
+            out.println("righjt");
+        }
+        else{
+            out.println("wrong");
+            out.println(playerX.getText());
+        }
+        //Require the user to enter both players name
+        if (playerX.getText().equals("") || playerO.getText().equals("")){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setContentText("Both players name is required.");
+            alert.show();
+            out.println("wrong");
+        }
+        else{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TicTacToeFXML.fxml"));
+            Parent nextPane = loader.load();
+            Scene boardScene = new Scene(nextPane);
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("TicTacToeFXML.fxml"));
-        Parent nextPane = loader.load();
-        Scene boardScene = new Scene(nextPane);
+            TicTacToeController controller = loader.getController();
+            controller.setPlayerNames(playerX.getText(), playerO.getText());
         
-        TicTacToeController controller = loader.getController();
-        controller.setPlayerNames(playerX.getText(), playerO.getText());
-        
-        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-        stage.setScene(boardScene);
-        stage.show();
+            Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+            stage.setScene(boardScene);
+            stage.show();
+        }
     }
 }

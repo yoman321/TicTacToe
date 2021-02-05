@@ -16,7 +16,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
-import javafx.scene.control.TextField;
+import java.io.*;
+import java.util.Scanner;
+import java.util.ArrayList;
 /**
  *
  * @author luoph
@@ -39,6 +41,7 @@ public class TicTacToeController {
                 boardArray[i][j] = "";
             }
         }
+        turnText.setText("Turn: "+playerX);
     }
     public void onclickBoard(ActionEvent actionEvent) throws Exception{
       
@@ -78,13 +81,15 @@ public class TicTacToeController {
         //Add character to baord and check for win
         boardArray[rowIndex][colIndex] = character;
         if (winCon(boardArray) == 1){
+            writeFile(playerX);
             out.println("X won");//text
-            winScene(actionEvent, "X");
+            winScene(actionEvent, playerX);
             
         }
         if (winCon(boardArray) == 2){
+            writeFile(playerO);
             out.println("O won");//text
-            winScene(actionEvent, "O");
+            winScene(actionEvent, playerO);
         }
         //Remove button and put character
         board.add(textCharacter, colIndex, rowIndex);
@@ -189,7 +194,7 @@ public class TicTacToeController {
         this.playerO = playerO;
     }
     //Create win scene
-    public void winScene(ActionEvent e, String character) throws Exception{    
+    public void winScene(ActionEvent e, String player) throws Exception{    
         
         //Move to next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TicTacToeWinFXML.fxml"));
@@ -197,12 +202,59 @@ public class TicTacToeController {
         Scene winScene = new Scene(nextPane);
         
         TicTacToeWinController controller = loader.getController();
-        controller.setWinText(character);
+        controller.setWinText(player);
         
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         stage.setScene(winScene);
         stage.show();
        
+    }
+    //Write to file method
+    public void writeFile(String winner) throws IOException{
+        
+        //Create file
+        File gameHistory = new File("gameHistory.txt");
+        
+        //Create variables
+        ArrayList<String> fileArray = new ArrayList<>();
+        boolean foundPlayer = false;
+        
+        //Check if file is empty
+        if (gameHistory.length() == 0){
+            try(PrintWriter output = new PrintWriter(gameHistory)){
+                output.println(winner+" 1");
+            }
+        }
+        else{
+            //Add everything from file to ArrayList
+            try(Scanner input = new Scanner(gameHistory)){ 
+                while (input.hasNext()){
+                    fileArray.add(input.nextLine());
+                } 
+            }
+            //Check if winner is already in file
+            for (int i=0; i<fileArray.size(); i++){
+                String[] currentLineArray = fileArray.get(i).split(" ");
+                ArrayList<String> currentLineList = new ArrayList<>();
+                for (int j=0; j<currentLineArray.length; j++){
+                    currentLineList.add(currentLineArray[j]);
+                }
+                if (currentLineList.contains(winner)){
+                    foundPlayer = true;
+                    int wins = Integer.parseInt(currentLineList.get(1));
+                    fileArray.set(i, winner+" "+(wins + 1));
+                }
+            }
+            if (!foundPlayer){
+                fileArray.add(winner+" 1");
+            }
+            //Write to file
+            try(PrintWriter output = new PrintWriter(gameHistory)){
+                for (int i=0; i<fileArray.size(); i++){
+                    output.println(fileArray.get(i));
+                }   
+            }
+        }
     }
 
 }
