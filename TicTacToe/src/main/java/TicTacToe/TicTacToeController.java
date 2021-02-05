@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 /**
  *
  * @author luoph
@@ -29,6 +30,8 @@ public class TicTacToeController {
     //Create variables
     private boolean playerTurn = true;
     private String[][] boardArray = new String[3][3];
+    private String playerX = "";
+    private String playerO = "";
     
     public void initialize(){
         for (int i=0; i<boardArray.length; i++){
@@ -67,10 +70,10 @@ public class TicTacToeController {
         
         //Change text
         if (playerTurn){
-            turnText.setText("Turn: X");
+            turnText.setText("Turn: "+playerX);
         }
         else
-            turnText.setText("Turn: O");
+            turnText.setText("Turn: "+playerO);
 
         //Add character to baord and check for win
         boardArray[rowIndex][colIndex] = character;
@@ -179,6 +182,11 @@ public class TicTacToeController {
             }
         }
         return 0;
+    }
+    //Create names import method
+    public void setPlayerNames(String playerX, String playerO){
+        this.playerX = playerX;
+        this.playerO = playerO;
     }
     //Create win scene
     public void winScene(ActionEvent e, String character) throws Exception{    
