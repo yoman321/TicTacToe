@@ -9,5 +9,5 @@ and open the template in the editor.
 */
 .records-text-font{
    -fx-font-size: 25px; 
+   -fx-align-content: center;
 }
-

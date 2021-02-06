@@ -12,9 +12,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.geometry.*;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
 
 /**
@@ -31,7 +38,7 @@ public class TicTacToeRecordsController {
     @FXML private GridPane topPane;
 
     public void initialize() throws IOException{
-        topPane.getStyleClass().add("records-text-font");
+
         //Create variables
         File gameHistory = new File("gameHistory.txt");
         ArrayList<String> fileArray = new ArrayList<>();
@@ -58,17 +65,33 @@ public class TicTacToeRecordsController {
         //Add numbering 
         for (int i=0; i<fileArray.size(); i++){
             String[] currentLineArray = fileArray.get(i).split(" ");
+            
             Text top = new Text(i+1+")");
             Text name = new Text(currentLineArray[0]);
             Text wins = new Text(currentLineArray[1]);
-            top.setStyle("records-text-font");
-            name.setStyle("records-text-font");
-            wins.setStyle("records-text-font");
+            
+            GridPane.setHalignment(top, HPos.CENTER);
+            GridPane.setValignment(top, VPos.CENTER);
+            GridPane.setHalignment(name, HPos.CENTER);
+            GridPane.setValignment(name, VPos.CENTER);
+            GridPane.setHalignment(wins, HPos.CENTER);
+            GridPane.setValignment(wins, VPos.CENTER);
+            
             topPane.add(top, 0, i+1);
             topPane.add(name, 1, i+1);
             topPane.add(wins, 2, i+1);
         }
         
-    }    
+    }  
+    //Create bakc button
+    public void onClickBack(ActionEvent e) throws Exception{
+        
+        Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeMenuFXML.fxml"));
+        Scene recordsScene = new Scene (nextPane);
+        
+        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+        stage.setScene(recordsScene);
+        stage.show();
+    }
     
 }
