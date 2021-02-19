@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import static java.lang.System.out;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
+import java.io.*;
 
 /**
  *
@@ -43,12 +44,22 @@ public class TicTacToeMenuController {
         
     }
     public void onClickRecords(ActionEvent e) throws Exception{
-        Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeRecordsFXML.fxml"));
-        Scene recordsScene = new Scene (nextPane);
         
-        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-        stage.setScene(recordsScene);
-        stage.show();
+        //Check if file exist
+        File gameHistory = new File("gameHistory.txt");
+        if (!gameHistory.exists()){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setContentText("No games has been recorded in the game files.");
+            alert.show();
+        }
+        else{
+            Parent nextPane = FXMLLoader.load(getClass().getResource("TicTacToeRecordsFXML.fxml"));
+            Scene recordsScene = new Scene (nextPane);
+        
+            Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+            stage.setScene(recordsScene);
+            stage.show();
+        }
     
     }
     public void onClickExit(){
