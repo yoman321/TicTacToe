@@ -67,19 +67,16 @@ public class TicTacToeMenuController {
     }
     //Move to next scene while keeping player names
     public void onClickContinue(ActionEvent e) throws Exception{
-        if (String.valueOf(playerX.getText()).equals(" ")){
-            out.println("righjt");
-        }
-        else{
-            out.println("wrong");
-            out.println(playerX.getText());
-        }
         //Require the user to enter both players name
         if (playerX.getText().equals("") || playerO.getText().equals("")){
             Alert alert = new Alert(AlertType.WARNING);
             alert.setContentText("Both players name is required.");
             alert.show();
-            out.println("wrong");
+        }
+        else if (playerX.getText().equals(playerO.getText())){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setContentText("Players name cannot be the same.");
+            alert.show();
         }
         else{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TicTacToeFXML.fxml"));

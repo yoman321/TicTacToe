@@ -19,6 +19,9 @@ import javafx.scene.Node;
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 /**
  *
  * @author luoph
@@ -34,6 +37,8 @@ public class TicTacToeController {
     private String[][] boardArray = new String[3][3];
     private String playerX = "";
     private String playerO = "";
+    private ImageView X;
+    private ImageView O;
     
     public void initialize(){
         for (int i=0; i<boardArray.length; i++){
@@ -42,6 +47,7 @@ public class TicTacToeController {
             }
         }
         turnText.setText("Turn: "+playerX);
+        
     }
     public void onclickBoard(ActionEvent actionEvent) throws Exception{
       
@@ -62,11 +68,14 @@ public class TicTacToeController {
         if (playerTurn){
             character = "X";
             textCharacter.setText(character);
+            textCharacter.setFont(new Font("Arial", 200));
             playerTurn = false;
+           
         }
         else{
             character = "O";
             textCharacter.setText(character);
+            textCharacter.setFont(new Font("Arial", 200));
             playerTurn = true;
         }
         
@@ -91,7 +100,9 @@ public class TicTacToeController {
             out.println("O won");//text
             winScene(actionEvent, playerO);
         }
-        //Remove button and put character
+        if (winCon(boardArray) == 3){
+            winScene(actionEvent, "Draw");
+        }
         board.add(textCharacter, colIndex, rowIndex);
         board.getChildren().remove(btn);
     }
@@ -185,6 +196,19 @@ public class TicTacToeController {
                if (Ocount == 3){
                    return 2;
             }
+        }
+        
+        //Check for draw
+        int drawCount = 0;
+        for (int i=0; i<boardArray.length; i++){
+            for (int j=0; j<boardArray[i].length; j++){
+                if (boardArray[i][j] != ""){
+                    drawCount++;
+                }
+            }
+        }
+        if(drawCount == 9){
+            return 3;
         }
         return 0;
     }

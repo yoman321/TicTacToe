@@ -9,13 +9,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TicTacToe.TicTacToeController">
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TicTacToe.TicTacToeController">
    <children>
-      <GridPane fx:id="board" gridLinesVisible="true" layoutY="235.0" prefHeight="665.0" prefWidth="701.0">
+      <GridPane fx:id="board" alignment="CENTER" gridLinesVisible="true" layoutY="235.0" prefHeight="665.0" prefWidth="701.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -23,21 +23,24 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="239.0" prefWidth="239.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="239.0" prefWidth="239.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Button>
             <!--GridPane.columnIndex="1" GridPane.rowIndex="1"-->
-            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="218.0" prefWidth="234.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="217.0" prefWidth="262.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="230.0" prefWidth="231.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="231.0" prefWidth="244.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="229.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="231.0" prefWidth="236.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="238.0" prefWidth="255.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="228.0" prefWidth="261.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="218.0" prefWidth="234.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="217.0" prefWidth="262.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="230.0" prefWidth="231.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="231.0" prefWidth="244.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="229.0" prefWidth="243.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="231.0" prefWidth="236.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="238.0" prefWidth="255.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onclickBoard" opacity="0.4" prefHeight="228.0" prefWidth="261.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </GridPane>
       <Text fx:id="turnText" layoutX="213.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn:  X">
          <font>

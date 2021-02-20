@@ -22,7 +22,11 @@ public class TicTacToeWinController {
     @FXML private Text winnerText;
     
     public void setWinText(String character){
-        winnerText.setText("Winner: "+character);
+        if (character.equals("Draw")){
+            winnerText.setText("No Winner");
+        }
+        else
+            winnerText.setText("Winner: "+character);
     }
      //Create main menu button
     public void onclickBack(ActionEvent e) throws Exception{
