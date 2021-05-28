@@ -42,7 +42,7 @@
             <Insets />
          </opaqueInsets>
       </GridPane>
-      <Text fx:id="turnText" layoutX="213.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn:  X">
+      <Text fx:id="turnText" layoutX="14.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn:  X">
          <font>
             <Font name="System Bold" size="75.0" />
          </font>
