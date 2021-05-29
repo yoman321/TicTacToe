@@ -26,24 +26,27 @@ import javafx.scene.text.Font;
  *
  * @author luoph
  */
+//Create class
 public class TicTacToeController {
-   
+    
+    //Create object
+    TicTacToeClass gameBoard = new TicTacToeClass(new String[3][3]);
+    
     //Create fxml variables
     @FXML private GridPane board;
     @FXML private Text turnText;
     
     //Create variables
     private boolean playerTurn = true;
-    private String[][] boardArray = new String[3][3];
     private String playerX = "";
     private String playerO = "";
     private ImageView X;
     private ImageView O;
     
     public void initialize(){
-        for (int i=0; i<boardArray.length; i++){
-            for (int j=0; j<boardArray[i].length; j++){
-                boardArray[i][j] = "";
+        for (int i=0; i<gameBoard.getBoardArray().length; i++){
+            for (int j=0; j<gameBoard.getBoardArray()[i].length; j++){
+                gameBoard.getBoardArray()[i][j] = "";
             }
         }
         turnText.setText("Turn: "+playerX);
@@ -88,19 +91,19 @@ public class TicTacToeController {
             turnText.setText("Turn: "+playerO);
 
         //Add character to baord and check for win
-        boardArray[rowIndex][colIndex] = character;
-        if (winCon(boardArray) == 1){
+        gameBoard.getBoardArray()[rowIndex][colIndex] = character;
+        if (gameBoard.winCon() == 1){
             writeFile(playerX);
             out.println("X won");//text
             winScene(actionEvent, playerX);
             
         }
-        if (winCon(boardArray) == 2){
+        if (gameBoard.winCon() == 2){
             writeFile(playerO);
             out.println("O won");//text
             winScene(actionEvent, playerO);
         }
-        if (winCon(boardArray) == 3){
+        if (gameBoard.winCon() == 3){
             winScene(actionEvent, "Draw");
         }
         board.add(textCharacter, colIndex, rowIndex);
@@ -116,102 +119,102 @@ public class TicTacToeController {
         stage.show();
     }
     //Create win method
-    public int winCon(String[][] boardArray){
-        
-        //Create variables
-        int Xcount = 0;
-        int Ocount = 0;
-        
-        //Check for row wins
-        for (int i=0; i<boardArray.length; i++){
-            for (int j=0; j<boardArray[i].length; j++){
-                if (boardArray[i][j].equals("X")){
-                    Xcount++;
-                }
-                if (boardArray[i][j].equals("O")){
-                    Ocount++;
-                }
-                if (Xcount == 3){
-                    return 1;
-                }
-                if (Ocount == 3){
-                    return 2;
-                }
-            }
-            //Reset value for next row
-            Xcount = 0;
-            Ocount = 0;
-        }
-        
-        //Check for column wins
-        for (int i=0; i<boardArray.length; i++){
-            for (int j=0; j<boardArray.length; j++){
-                if (boardArray[j][i].equals("X")){
-                    Xcount++;
-                }
-               if (boardArray[j][i].equals("O")){
-                   Ocount++;
-               }
-               if (Xcount == 3){
-                   return 1;
-               }
-               if (Ocount == 3){
-                   return 2;
-               }
-            }
-            //Reset values
-            Xcount = 0;
-            Ocount = 0;
-        }
-        
-        //Check for main diagonals wins
-        for (int i=0, j=0; i<boardArray.length; i++, j++){
-            if (boardArray[i][j].equals("X")){
-                Xcount++;
-            }
-            if (boardArray[i][j].equals("O")){
-                 Ocount++;
-            }
-            if (Xcount == 3){
-                   return 1;
-            }
-               if (Ocount == 3){
-                   return 2;
-            }
-        }
-        Xcount = 0;
-        Ocount = 0;
-        
-        //Check for inverse diagonals wins
-        for (int i=boardArray.length-1, j=0; i>-1; i--, j++){
-            if (boardArray[i][j].equals("X")){
-                Xcount++;
-            }
-            if (boardArray[i][j].equals("O")){
-                 Ocount++;
-            }
-            if (Xcount == 3){
-                   return 1;
-            }
-               if (Ocount == 3){
-                   return 2;
-            }
-        }
-        
-        //Check for draw
-        int drawCount = 0;
-        for (int i=0; i<boardArray.length; i++){
-            for (int j=0; j<boardArray[i].length; j++){
-                if (boardArray[i][j] != ""){
-                    drawCount++;
-                }
-            }
-        }
-        if(drawCount == 9){
-            return 3;
-        }
-        return 0;
-    }
+//    public int winCon(String[][] boardArray){
+//        
+//        //Create variables
+//        int Xcount = 0;
+//        int Ocount = 0;
+//        
+//        //Check for row wins
+//        for (int i=0; i<boardArray.length; i++){
+//            for (int j=0; j<boardArray[i].length; j++){
+//                if (boardArray[i][j].equals("X")){
+//                    Xcount++;
+//                }
+//                if (boardArray[i][j].equals("O")){
+//                    Ocount++;
+//                }
+//                if (Xcount == 3){
+//                    return 1;
+//                }
+//                if (Ocount == 3){
+//                    return 2;
+//                }
+//            }
+//            //Reset value for next row
+//            Xcount = 0;
+//            Ocount = 0;
+//        }
+//        
+//        //Check for column wins
+//        for (int i=0; i<boardArray.length; i++){
+//            for (int j=0; j<boardArray.length; j++){
+//                if (boardArray[j][i].equals("X")){
+//                    Xcount++;
+//                }
+//               if (boardArray[j][i].equals("O")){
+//                   Ocount++;
+//               }
+//               if (Xcount == 3){
+//                   return 1;
+//               }
+//               if (Ocount == 3){
+//                   return 2;
+//               }
+//            }
+//            //Reset values
+//            Xcount = 0;
+//            Ocount = 0;
+//        }
+//        
+//        //Check for main diagonals wins
+//        for (int i=0, j=0; i<boardArray.length; i++, j++){
+//            if (boardArray[i][j].equals("X")){
+//                Xcount++;
+//            }
+//            if (boardArray[i][j].equals("O")){
+//                 Ocount++;
+//            }
+//            if (Xcount == 3){
+//                   return 1;
+//            }
+//               if (Ocount == 3){
+//                   return 2;
+//            }
+//        }
+//        Xcount = 0;
+//        Ocount = 0;
+//        
+//        //Check for inverse diagonals wins
+//        for (int i=boardArray.length-1, j=0; i>-1; i--, j++){
+//            if (boardArray[i][j].equals("X")){
+//                Xcount++;
+//            }
+//            if (boardArray[i][j].equals("O")){
+//                 Ocount++;
+//            }
+//            if (Xcount == 3){
+//                   return 1;
+//            }
+//               if (Ocount == 3){
+//                   return 2;
+//            }
+//        }
+//        
+//        //Check for draw
+//        int drawCount = 0;
+//        for (int i=0; i<boardArray.length; i++){
+//            for (int j=0; j<boardArray[i].length; j++){
+//                if (boardArray[i][j] != ""){
+//                    drawCount++;
+//                }
+//            }
+//        }
+//        if(drawCount == 9){
+//            return 3;
+//        }
+//        return 0;
+//    }
     //Create names import method
     public void setPlayerNames(String playerX, String playerO){
         this.playerX = playerX;
