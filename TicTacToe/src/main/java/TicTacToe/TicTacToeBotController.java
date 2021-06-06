@@ -37,9 +37,10 @@ public class TicTacToeBotController extends TicTacToeController{
     @FXML private Text startCounter;
     
     //Create variables
-    private boolean playerTurn = true;
-    private String playerX = "";
-    private String playerO = "";
+    private boolean botTurn = true;
+    private String player = "";
+    private String computer = "";
+    private String playerName = "";
     private int XPlays = 0;
     private int OPlays = 0;
     private ImageView X;
@@ -51,93 +52,97 @@ public class TicTacToeBotController extends TicTacToeController{
                 gameBoard.getBoardArray()[i][j] = "";
             }
         }
-        turnText.setText("Turn: "+playerX);
+        if (player.equals("X")){
+            turnText.setText("Turn: "+playerName);
+        }
+        else 
+            turnText.setText("Turn: Computer");
         
         //Decrement startcounter
-        Thread thread = new Thread();
-        thread = new Thread(new Runnable(){
-            @Override
-            public void run(){
-                try{
-                    while(Integer.parseInt(startCounter.getText()) >= 0){
-                        startCounter.setText(String.valueOf(Integer.parseInt(startCounter.getText()) - 1));
-                        Thread.sleep(1000);
-                    }
-                    startCounter.setVisible(false);
-                    board.setVisible(true);
-                    turnText.setVisible(true);
-                }
-                catch (Exception ex){
-                    ex.printStackTrace();
-                }
-                Thread.currentThread().interrupt();
+        try{
+            while(Integer.parseInt(startCounter.getText()) >= 0){
+                startCounter.setText(String.valueOf(Integer.parseInt(startCounter.getText()) - 1));
+                Thread.sleep(1000);
             }
-        });
-        thread.start();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        startCounter.setVisible(false);
+        board.setVisible(true);
+        turnText.setVisible(true);
         
         //Bot play if starting as X
-        if (playerX.equals("Computer")){
+        if (computer.equals("X")){
             gameBoard.botPlay();
             XPlays++;
-            playerTurn = false;
+            botTurn = false;
+            turnText.setText("Turn: ");
         }
     }
     public void onclickBoard(ActionEvent actionEvent) throws Exception{
         
-        //Create variables
-        Text textCharacter = new Text("X");
-        String character = "";
+        turnText.setText("Turn: Computer");
+        //Get click location
+        Button btn = (Button)actionEvent.getSource();
+        int rowIndex = board.getRowIndex(btn);
+        int colIndex = board.getColumnIndex(btn);
         
         //Check whether it's player's turn
-        if ((!playerX.equals("Computer") && XPlays == OPlays) || (playerX.equals("Computer") && XPlays > OPlays)){
-            Button btn = (Button)actionEvent.getSource();
-            int rowIndex = board.getRowIndex(btn);
-            int colIndex = board.getColumnIndex(btn);
-        
-            //Change character
-            if (playerTurn){
-                character = "X";
-                textCharacter.setText(character);
-                textCharacter.setFont(new Font("Arial", 200));
-                playerTurn = false;
-           
-                }
-                else{
-                character = "O";
-                textCharacter.setText(character);
-                textCharacter.setFont(new Font("Arial", 200));
-                playerTurn = true;
-                }
-                //Change text
-            if (playerTurn){
-                turnText.setText("Turn: "+playerX);
-            }
-            else
-                turnText.setText("Turn: "+playerO);
+        if ((player.equals("X") && XPlays == OPlays) || (player.equals("O") && XPlays > OPlays)){
             
-            //Add character to baord and check for win
-            gameBoard.getBoardArray()[rowIndex][colIndex] = character;
+            //Create variable
+            Text boardCharacter = new Text();
+            boardCharacter.setFont(new Font("Arial", 200));
+            
+            //Add character to board and check for win
+            gameBoard.getBoardArray()[rowIndex][colIndex] = player;
+            if (player.equals("X")){
+                XPlays++;
+                boardCharacter.setText("X");
+            }
+            else 
+                OPlays++;
+                boardCharacter.setText("O");
+            
             if (gameBoard.winCon() == 1){
-                writeFile(playerX);
+                writeFile(playerName);
                 out.println("X won");//text
-                winScene(actionEvent, playerX);
+                winScene(actionEvent, playerName);
             
             }
             if (gameBoard.winCon() == 2){
-                writeFile(playerO);
+                writeFile("Computer");
                 out.println("O won");//text
-                winScene(actionEvent, playerO);
+                winScene(actionEvent, "Computer");
             }
             if (gameBoard.winCon() == 3){
                 winScene(actionEvent, "Draw");
             }
-            board.add(textCharacter, colIndex, rowIndex);
+            board.add(boardCharacter, colIndex, rowIndex);
             board.getChildren().remove(btn);
         }
+        try{
+            gameBoard.botPlay();
+            turnText.setText("Turn: "+playerName);
+            Thread.sleep(1000);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        
     }
     //Import names
     public void setPlayerNames(String playerX, String playerO){
-        this.playerX = playerX;
-        this.playerO = playerO;
+        if (playerX.equals("Computer")){
+            computer = "X";
+            player = "O";
+            playerName = playerO;
+        }
+        else 
+            computer = "O";
+            player = "X";
+            playerName = playerX;
+            
     }
 }
