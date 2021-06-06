@@ -8,37 +8,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TicTacToe.TicTacToeMenuController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TicTacToe.TicTacToeMenuController">
    <children>
-      <Pane fx:id="mainPane" layoutY="6.0" prefHeight="900.0" prefWidth="700.0">
-         <children>
-            <Text layoutX="18.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To TicTacToe">
-               <font>
-                  <Font name="System Bold Italic" size="62.0" />
-               </font>
-            </Text>
-            <Text layoutX="296.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options">
-               <font>
-                  <Font name="System Bold" size="29.0" />
-               </font>
-            </Text>
-            <Button layoutX="311.0" layoutY="643.0" mnemonicParsing="false" onAction="#onClickRecords" text="Records">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-            <Button layoutX="311.0" layoutY="569.0" mnemonicParsing="false" onAction="#onClickStart" prefHeight="37.0" prefWidth="78.0" text="Start ">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-            <Button layoutX="311.0" layoutY="716.0" mnemonicParsing="false" onAction="#onClickExit" prefHeight="37.0" prefWidth="78.0" text="Exit">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
       <Pane fx:id="namePane" prefHeight="906.0" prefWidth="700.0">
          <children>
             <Button layoutX="307.0" layoutY="488.0" mnemonicParsing="false" onAction="#onClickContinue" text="Continue">
@@ -63,6 +34,40 @@
             </Label>
             <TextField fx:id="playerX" layoutX="276.0" layoutY="391.0" />
             <TextField fx:id="playerO" layoutX="276.0" layoutY="441.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="mainPane" layoutY="6.0" prefHeight="900.0" prefWidth="700.0">
+         <children>
+            <Text layoutX="18.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To TicTacToe">
+               <font>
+                  <Font name="System Bold Italic" size="62.0" />
+               </font>
+            </Text>
+            <Text layoutX="296.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+            </Text>
+            <Button layoutX="311.0" layoutY="714.0" mnemonicParsing="false" onAction="#onClickRecords" text="Records">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="276.0" layoutY="585.0" mnemonicParsing="false" onAction="#onClickHuman" prefHeight="37.0" prefWidth="149.0" text="Human vs Human">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="312.0" layoutY="775.0" mnemonicParsing="false" onAction="#onClickExit" prefHeight="37.0" prefWidth="78.0" text="Exit">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="289.0" layoutY="650.0" mnemonicParsing="false" onAction="#onClickBot" text="Human vs Bot">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>

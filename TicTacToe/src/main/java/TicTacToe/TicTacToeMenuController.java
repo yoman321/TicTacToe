@@ -31,17 +31,40 @@ public class TicTacToeMenuController {
     @FXML private TextField playerX;
     @FXML private TextField playerO;
     
+    //Create variable
+    boolean botGame = false;
+    
     //Create initialize method
     public void initialize(){
         namePane.setVisible(false);
+        playerX.setEditable(true);
+        playerO.setEditable(true);
     }
     //Create buttons methods
-    public void onClickStart(ActionEvent e) throws Exception{
+    public void onClickHuman(ActionEvent e) throws Exception{
+        
+        //Set pane visiblity
+        mainPane.setVisible(false);
+        namePane.setVisible(true);
+
+        botGame = false;
+    }
+    public void onClickBot(ActionEvent e) throws Exception{
         
         //Set pane visiblity
         mainPane.setVisible(false);
         namePane.setVisible(true);
         
+        int letter = (int) Math.random() * 2;
+        if (letter == 0){
+            playerX.getText().equals("Computer");
+            playerX.setEditable(false);
+        }
+        else{
+            playerO.getText().equals("Computer");
+            playerO.setEditable(false);
+        }
+        botGame = true;
     }
     public void onClickRecords(ActionEvent e) throws Exception{
         
@@ -67,28 +90,46 @@ public class TicTacToeMenuController {
     }
     //Move to next scene while keeping player names
     public void onClickContinue(ActionEvent e) throws Exception{
-        //Require the user to enter both players name
-        if (playerX.getText().equals("") || playerO.getText().equals("")){
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setContentText("Both players name is required.");
-            alert.show();
-        }
-        else if (playerX.getText().equals(playerO.getText())){
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setContentText("Players name cannot be the same.");
-            alert.show();
-        }
-        else{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("TicTacToeFXML.fxml"));
-            Parent nextPane = loader.load();
-            Scene boardScene = new Scene(nextPane);
+        //Check for bot game and requirements
+        Alert alert = new Alert(AlertType.WARNING);
+        if (botGame){
+            if ((playerX.equals("Computer") && playerO.equals("")) || (playerX.equals("") && playerO.equals("Computer"))){
+                alert.setContentText("Player name is required.");
+            }
+            else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("TicTacToeBotFXML.fxml"));
+                Parent nextPane = loader.load();
+                Scene boardScene = new Scene(nextPane);
         
-            TicTacToeController controller = loader.getController();
-            controller.setPlayerNames(playerX.getText(), playerO.getText());
+                TicTacToeController controller = loader.getController();
+                controller.setPlayerNames(playerX.getText(), playerO.getText());
         
-            Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-            stage.setScene(boardScene);
-            stage.show();
+                Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+                stage.setScene(boardScene);
+                stage.show();
+            }
+        }
+        if (!botGame){
+            if (playerX.getText().equals("") || playerO.getText().equals("")){
+                alert.setContentText("Both players name are required.");
+                alert.show();
+            }
+            else if (playerX.getText().equals(playerO.getText())){
+                alert.setContentText("Players name cannot be the same.");
+                alert.show();
+            }
+            else{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("TicTacToeFXML.fxml"));
+                Parent nextPane = loader.load();
+                Scene boardScene = new Scene(nextPane);
+        
+                TicTacToeController controller = loader.getController();
+                controller.setPlayerNames(playerX.getText(), playerO.getText());
+        
+                Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+                stage.setScene(boardScene);
+                stage.show();
+            }
         }
     }
 }

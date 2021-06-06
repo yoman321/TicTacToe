@@ -62,8 +62,6 @@ public class TicTacToeController {
         //Create button and coordinates
         Button btn = (Button)actionEvent.getSource();
         out.println(btn.getText());//test
-        out.println(board.getRowIndex(btn));//test
-        out.println(board.getColumnIndex(btn));//test
         int rowIndex = board.getRowIndex(btn);
         int colIndex = board.getColumnIndex(btn);
 
