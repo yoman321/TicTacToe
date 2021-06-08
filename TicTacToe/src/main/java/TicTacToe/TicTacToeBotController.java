@@ -74,7 +74,7 @@ public class TicTacToeBotController extends TicTacToeController{
         
         //Bot play if starting as X
         if (computer.equals("X")){
-            gameBoard.botPlay();
+            gameBoard.botPlay(XPlays, OPlays, computer);
             XPlays++;
             botTurn = false;
             turnText.setText("Turn: ");
@@ -123,7 +123,7 @@ public class TicTacToeBotController extends TicTacToeController{
             board.getChildren().remove(btn);
         }
         try{
-            gameBoard.botPlay();
+            gameBoard.botPlay(XPlays, OPlays, computer);
             turnText.setText("Turn: "+playerName);
             Thread.sleep(1000);
         }
