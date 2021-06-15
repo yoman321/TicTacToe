@@ -71,19 +71,23 @@ public class TicTacToeBotClass extends TicTacToeClass{
                 outerloop:
                 for (int i=0; i<rowSum.length; i++){
                     if (rowSum[i] == 1){
-                        if (colSum[0] < 1 && colSum[0] > 5){
+                        if (colSum[0] == 1 || colSum[0] == 4){
+                            out.println("here1");//test
                             play(i, 0, computer);
                             botBoardChange(i, 0, computer);
                         }
-                        else if (colSum[2] < 1 && colSum[2] > 5){
+                        else if (colSum[2] == 1 && colSum[2] == 4){
+                            out.println("here2");//test
                             play(i, 2, computer);
                             botBoardChange(i, 2, computer);
                         }
+
                     }
                     else if (rowSum[i] == 5){
                         for (int j=0; j<rowSum.length; j+=2){
                             for (int k=0; k<colSum.length; k+=2){
                                 if (rowSum[j] == 0 && colSum[k] == 1){
+                                    out.println("here3");//test
                                     play(j, k, computer);
                                     botBoardChange(j, k, computer);
                                     break outerloop;

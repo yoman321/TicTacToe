@@ -68,10 +68,13 @@ public class TicTacToeBotController extends TicTacToeController{
         Button btn = (Button)actionEvent.getSource();
         int rowIndex = board.getRowIndex(btn);
         int colIndex = board.getColumnIndex(btn);
-        
+        out.println(XPlays+" Xplays");//test
+        out.println(OPlays+" OPlays");//test
+        out.println(player+" player");
         //Check whether it's player's turn
         if ((player.equals("X") && XPlays == OPlays) || (player.equals("O") && XPlays > OPlays)){
             
+            out.println("inside");//test
             //Create variable
             String playerCharacter = " ";
             
@@ -100,16 +103,11 @@ public class TicTacToeBotController extends TicTacToeController{
                 winScene(actionEvent, "Draw");
             }
             boardChange(rowIndex, colIndex, playerCharacter);
-            board.getChildren().remove(btn);
+//            board.getChildren().remove(btn);
         }
-        try{
             gameBoard.botPlay(XPlays, OPlays, computer, board);
             turnText.setText("Turn: "+playerName);
-            Thread.sleep(1000);
-        }
-        catch (Exception ex){
-            ex.printStackTrace();
-        }
+            XPlays++;
         
     }
     public void boardChange(int rowIndex, int colIndex, String player){
@@ -136,10 +134,11 @@ public class TicTacToeBotController extends TicTacToeController{
             playerName = playerO;
             out.println(computer);
         }
-        else 
+        else{
             computer = "O";
             player = "X";
             playerName = playerX;
+        }
             
     }
     public void gameStartEvents(){
