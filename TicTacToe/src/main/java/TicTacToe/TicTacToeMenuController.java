@@ -55,15 +55,18 @@ public class TicTacToeMenuController {
         mainPane.setVisible(false);
         namePane.setVisible(true);
         
-        int letter = (int) Math.random() * 2;
-        if (letter == 0){
-            playerX.getText().equals("Computer");
+//        int letter = (int) Math.random() * 2;
+//        if (letter == 0){
+//            playerX.setText("Computer");
+//            playerX.setEditable(false);
+//        }
+//        else{
+//            playerO.setText("Computer");
+//            playerO.setEditable(false);
+//        }
+            //test
+            playerX.setText("Computer");
             playerX.setEditable(false);
-        }
-        else{
-            playerO.getText().equals("Computer");
-            playerO.setEditable(false);
-        }
         botGame = true;
     }
     public void onClickRecords(ActionEvent e) throws Exception{
@@ -101,12 +104,14 @@ public class TicTacToeMenuController {
                 Parent nextPane = loader.load();
                 Scene boardScene = new Scene(nextPane);
         
-                TicTacToeController controller = loader.getController();
+                TicTacToeBotController controller = loader.getController();
                 controller.setPlayerNames(playerX.getText(), playerO.getText());
+                
         
                 Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
                 stage.setScene(boardScene);
                 stage.show();
+                controller.gameStartEvents();
             }
         }
         if (!botGame){
@@ -124,8 +129,8 @@ public class TicTacToeMenuController {
                 Scene boardScene = new Scene(nextPane);
         
                 TicTacToeController controller = loader.getController();
-                controller.setPlayerNames(playerX.getText(), playerO.getText());
-        
+//                controller.setPlayerNames(playerX.getText(), playerO.getText());//test
+                
                 Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
                 stage.setScene(boardScene);
                 stage.show();

@@ -1,4 +1,4 @@
-John 1
-Bob 1
-someone 1
+1 2
+1 2
+1 2
 2 3
