@@ -158,6 +158,8 @@ public class TicTacToeBotController extends TicTacToeController{
                         Thread.sleep(1000);
                         out.println(startCounter.getText());
                     }
+                    
+                    Thread.currentThread().interrupt();
                 }
                 catch(Exception ex){
                     ex.printStackTrace();
@@ -166,7 +168,6 @@ public class TicTacToeBotController extends TicTacToeController{
                     startCounter.setVisible(false);
                     board.setVisible(true);
                     turnText.setVisible(true);
-                    Thread.currentThread().interrupt();
                 }
             }
         });

@@ -34,24 +34,30 @@ public class TicTacToeBotClass extends TicTacToeClass{
             if (XPlays == 0){
                int randomNbre = (int)(Math.random() * 4);
                if (randomNbre == 0){
+                   out.println("first");
                    play(0, 0, computer);
                    botBoardChange(0, 0, computer);
                }
                else if (randomNbre == 1){
+                   out.println("second");
                    play(0, 2, computer);
                    botBoardChange(0, 2, computer);
                    getBoardArray()[0][2] = computer;
                }
                else if (randomNbre == 2){
+                   out.println("thrid");
                    play(2, 0, computer);
                    botBoardChange(2, 0, computer);
                    getBoardArray()[2][0] = computer;
                }
                else if (randomNbre == 3){
+                   out.println("fourth");
+                   botBoardChange(2, 2, computer);
                    getBoardArray()[2][2] = computer;
                }
             }
             if (XPlays == 1){
+                out.println("plays1");
                 for (int i=0; i<getBoardArray().length; i++){
                     for (int j=0; j<getBoardArray()[i].length; j++){
                         if (getBoardArray()[i][j].equals("X")){
@@ -71,6 +77,7 @@ public class TicTacToeBotClass extends TicTacToeClass{
                 outerloop:
                 for (int i=0; i<rowSum.length; i++){
                     if (rowSum[i] == 1){
+                        out.println("check rowSum[i] == 1");
                         if (colSum[0] == 1 || colSum[0] == 4){
                             out.println("here1");//test
                             play(i, 0, computer);
@@ -88,6 +95,18 @@ public class TicTacToeBotClass extends TicTacToeClass{
                             for (int k=0; k<colSum.length; k+=2){
                                 if (rowSum[j] == 0 && colSum[k] == 1){
                                     out.println("here3");//test
+                                    play(j, k, computer);
+                                    botBoardChange(j, k, computer);
+                                    break outerloop;
+                                }
+                            }
+                        }
+                    }
+                    else if (colSum[i] == 5){
+                        for (int j=0; j<colSum.length; j+=2){
+                            for (int k=0; k<colSum.length; k+=2){
+                                if (rowSum[j] == 1 && colSum[k] == 0){
+                                    out.println("here4");
                                     play(j, k, computer);
                                     botBoardChange(j, k, computer);
                                     break outerloop;
