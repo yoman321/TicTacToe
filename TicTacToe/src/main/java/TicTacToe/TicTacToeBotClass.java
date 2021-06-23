@@ -28,7 +28,6 @@ public class TicTacToeBotClass extends TicTacToeClass{
     public void botPlay(int XPlays, int OPlays, String computer, GridPane board){
         out.println("nothin");//test
         //Create variables
-        String firstPlay = "";
         int[] rowSum = new int[3];
         int[] colSum = new int[3];
         
@@ -70,74 +69,61 @@ public class TicTacToeBotClass extends TicTacToeClass{
                         }
                     }
                 }
-                outerloop:
-                for (int i=0; i<rowSum.length; i++){
-                    if (rowSum[i] == 1){
-                        out.println("check rowSum[i] == 1");
-                        if (colSum[0] == 1 || colSum[0] == 4){
-                            out.println("here1");//test
-                            play(i, 2, computer);
-                        }
-                        else if (colSum[2] == 1 && colSum[2] == 4){
-                            out.println("here2");//test
-                            play(i, 0, computer);
-                        }
-
+                if (rowSum[1] == 4 && colSum[1] == 4){
+                    if (rowSum[0] == 1 && colSum[0] == 0){
+                        play(2, 2, computer);
                     }
-                    else if (rowSum[i] == 5){
-                        for (int j=0; j<rowSum.length; j+=2){
-                            for (int k=0; k<colSum.length; k+=2){
-                                if (rowSum[j] == 0 && colSum[k] == 1){
-                                    out.println("here3");//test
-                                    play(j, k, computer);
-                                    break outerloop;
-                                }
-                            }
-                        }
+                    else if (rowSum[2] == 1 && colSum[2] == 1){
+                        play(0, 0, computer);
                     }
-                    else if (colSum[i] == 5){
-                        for (int j=0; j<colSum.length; j+=2){
-                            for (int k=0; k<colSum.length; k+=2){
-                                if (rowSum[j] == 1 && colSum[k] == 0){
-                                    out.println("here4");
-                                    play(j, k, computer);
-                                    break outerloop;
-                                }
-                            }
-                        }
+                    else if (rowSum[2] == 1 && colSum[0] == 1){
+                        play(0, 2, computer);
                     }
-                        
-//                    for (int j=0; j<colSum.length; i++){
-//                        if ((rowSum[i] <= 3 || rowSum[i] == 5) && colSum[j] >= 4){
-//                            if (rowSum[i] == 5){
-//                                if (i == 0 && j == 0){
-//                                    play(3, 3, computer);
-//                                }
-//                                else if (i == 3 && j == 3){
-//                                    play(0, 0, computer);
-//                                }
-//                                else
-//                                    play(j, i, computer);
-//                            }
-//                            else
-//                                
-//                        }
-                    
+                    else if (rowSum[0] == 1 && colSum[2] == 1){
+                        play(2, 0, computer);
+                    }
                 }
+                else {
+                    outerloop:
+                    for (int i=0; i<rowSum.length; i++){
+                        if (rowSum[i] == 1){
+                            out.println("check rowSum[i] == 1");
+                            if (colSum[0] == 1 || colSum[0] == 4){
+                                out.println("here1");//test
+                                play(i, 2, computer);
+                            }
+                            else if (colSum[2] == 1 && colSum[2] == 4){
+                                out.println("here2");//test
+                                play(i, 0, computer);
+                            }
+                        }
+                        else if (rowSum[i] == 5){
+                            for (int j=0; j<rowSum.length; j+=2){
+                                for (int k=0; k<colSum.length; k+=2){
+                                    if (rowSum[j] == 0 && colSum[k] == 1){
+                                        out.println("here3");//test
+                                        play(j, k, computer);
+                                        break outerloop;
+                                    }
+                                }
+                            }
+                        }
+                        else if (colSum[i] == 5){
+                            for (int j=0; j<colSum.length; j+=2){
+                                for (int k=0; k<colSum.length; k+=2){
+                                    if (rowSum[j] == 1 && colSum[k] == 0){
+                                        out.println("here4");
+                                        play(j, k, computer);
+                                        break outerloop;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
             }
-//                if (getBoardArray()[1][1].equals(" ")){
-//                    int[] oppPlay = new int[2];
-//                    for (int i=0; i<getBoardArray().length; i++){
-//                        for (int j=0; j<getBoardArray()[i].length; j++){
-//                            if (getBoardArray()[i][j].equals("O")){
-//                                oppPlay[0] = i;
-//                                oppPlay[1] = j;
-//                            }
-//                        }
-//                    }
-//                }
-//                if (firstPlay.equals("uLeft") && )
-//            }
+
         }
         else if (computer.equals("O")){
             
