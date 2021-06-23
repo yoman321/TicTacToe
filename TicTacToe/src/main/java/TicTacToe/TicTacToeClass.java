@@ -29,9 +29,6 @@ package TicTacToe;
         this.boardArray = boardArray;
     }
     //Create methods
-    public void play(int rowIndex, int colIndex, String player){
-        getBoardArray()[rowIndex][colIndex] = player;
-    }
     public int winCon(){
         //Create variables
         int Xcount = 0;

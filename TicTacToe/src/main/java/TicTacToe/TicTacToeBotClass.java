@@ -21,8 +21,11 @@ public class TicTacToeBotClass extends TicTacToeClass{
         super(boardArray);
     }
     //Create methods
+    public void play(int rowIndex, int colIndex, String player){
+        getBoardArray()[rowIndex][colIndex] = player;
+        TicTacToeBotController.botControllerInstance.boardChange(rowIndex, colIndex, player);
+    }
     public void botPlay(int XPlays, int OPlays, String computer, GridPane board){
-        
         out.println("nothin");//test
         //Create variables
         String firstPlay = "";
@@ -36,24 +39,17 @@ public class TicTacToeBotClass extends TicTacToeClass{
                if (randomNbre == 0){
                    out.println("first");
                    play(0, 0, computer);
-                   botBoardChange(0, 0, computer);
                }
                else if (randomNbre == 1){
                    out.println("second");
-                   play(0, 2, computer);
-                   botBoardChange(0, 2, computer);
-                   getBoardArray()[0][2] = computer;
-               }
+                   play(0, 2, computer);           }
                else if (randomNbre == 2){
                    out.println("thrid");
                    play(2, 0, computer);
-                   botBoardChange(2, 0, computer);
-                   getBoardArray()[2][0] = computer;
                }
                else if (randomNbre == 3){
                    out.println("fourth");
-                   botBoardChange(2, 2, computer);
-                   getBoardArray()[2][2] = computer;
+                   play(2, 2, computer);
                }
             }
             if (XPlays == 1){
@@ -80,13 +76,11 @@ public class TicTacToeBotClass extends TicTacToeClass{
                         out.println("check rowSum[i] == 1");
                         if (colSum[0] == 1 || colSum[0] == 4){
                             out.println("here1");//test
-                            play(i, 0, computer);
-                            botBoardChange(i, 0, computer);
+                            play(i, 2, computer);
                         }
                         else if (colSum[2] == 1 && colSum[2] == 4){
                             out.println("here2");//test
-                            play(i, 2, computer);
-                            botBoardChange(i, 2, computer);
+                            play(i, 0, computer);
                         }
 
                     }
@@ -96,7 +90,6 @@ public class TicTacToeBotClass extends TicTacToeClass{
                                 if (rowSum[j] == 0 && colSum[k] == 1){
                                     out.println("here3");//test
                                     play(j, k, computer);
-                                    botBoardChange(j, k, computer);
                                     break outerloop;
                                 }
                             }
@@ -108,7 +101,6 @@ public class TicTacToeBotClass extends TicTacToeClass{
                                 if (rowSum[j] == 1 && colSum[k] == 0){
                                     out.println("here4");
                                     play(j, k, computer);
-                                    botBoardChange(j, k, computer);
                                     break outerloop;
                                 }
                             }
@@ -150,8 +142,5 @@ public class TicTacToeBotClass extends TicTacToeClass{
         else if (computer.equals("O")){
             
         }
-    }
-    public void botBoardChange(int rowIndex, int colIndex, String player){
-        TicTacToeBotController.botControllerInstance.boardChange(rowIndex, colIndex, player);
     }
 }
