@@ -29,7 +29,7 @@ package TicTacToe;
         this.boardArray = boardArray;
     }
     //Create methods
-    public int winCon(){
+    public String winCon(){
         //Create variables
         int Xcount = 0;
         int Ocount = 0;
@@ -44,10 +44,10 @@ package TicTacToe;
                     Ocount++;
                 }
                 if (Xcount == 3){
-                    return 1;
+                    return "X";
                 }
                 if (Ocount == 3){
-                    return 2;
+                    return "O";
                 }
             }
             //Reset value for next row
@@ -65,10 +65,10 @@ package TicTacToe;
                    Ocount++;
                }
                if (Xcount == 3){
-                   return 1;
+                   return "X";
                }
                if (Ocount == 3){
-                   return 2;
+                   return "O";
                }
             }
             //Reset values
@@ -85,10 +85,10 @@ package TicTacToe;
                  Ocount++;
             }
             if (Xcount == 3){
-                   return 1;
+                   return "X";
             }
                if (Ocount == 3){
-                   return 2;
+                   return "O";
             }
         }
         Xcount = 0;
@@ -103,10 +103,10 @@ package TicTacToe;
                  Ocount++;
             }
             if (Xcount == 3){
-                   return 1;
+                   return "X";
             }
                if (Ocount == 3){
-                   return 2;
+                   return "O";
             }
         }
         
@@ -120,8 +120,8 @@ package TicTacToe;
             }
         }
         if(drawCount == 9){
-            return 3;
+            return "D";
         }
-        return 0;
+        return "No Win";
     }
  }

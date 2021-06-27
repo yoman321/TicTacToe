@@ -25,12 +25,29 @@ public class TicTacToeBotClass extends TicTacToeClass{
         getBoardArray()[rowIndex][colIndex] = player;
         TicTacToeBotController.botControllerInstance.boardChange(rowIndex, colIndex, player);
     }
-    public void botPlay(int XPlays, int OPlays, String computer, GridPane board){
+    public void botPlay(int XPlays, int OPlays, String computer){
         out.println("nothin");//test
         //Create variables
         int[] rowSum = new int[3];
         int[] colSum = new int[3];
         
+        //Get rows and cols values
+        for (int i=0; i<getBoardArray().length; i++){
+            for (int j=0; j<getBoardArray()[i].length; j++){
+                if (getBoardArray()[i][j].equals("X")){
+                    rowSum[i] += 1;
+                }
+                else if (getBoardArray()[i][j].equals("O")){
+                    rowSum[i] += 4;
+                }
+                if (getBoardArray()[j][i].equals("X")){
+                    colSum[i] += 1;
+                }
+                else if (getBoardArray()[j][i].equals("O")){ 
+                    colSum[i] += 4;
+                }
+            }
+        }
         //Bot moves
         if (computer.equals("X")){
             if (XPlays == 0){
@@ -53,22 +70,6 @@ public class TicTacToeBotClass extends TicTacToeClass{
             }
             if (XPlays == 1){
                 out.println("plays1");
-                for (int i=0; i<getBoardArray().length; i++){
-                    for (int j=0; j<getBoardArray()[i].length; j++){
-                        if (getBoardArray()[i][j].equals("X")){
-                            rowSum[i] += 1;
-                        }
-                        else if (getBoardArray()[i][j].equals("O")){
-                            rowSum[i] += 4;
-                        }
-                        if (getBoardArray()[j][i].equals("X")){
-                            colSum[i] += 1;
-                        }
-                        else if (getBoardArray()[j][i].equals("O")){
-                            colSum[i] += 4;
-                        }
-                    }
-                }
                 if (rowSum[1] == 4 && colSum[1] == 4){
                     if (rowSum[0] == 1 && colSum[0] == 0){
                         play(2, 2, computer);
@@ -88,13 +89,13 @@ public class TicTacToeBotClass extends TicTacToeClass{
                     for (int i=0; i<rowSum.length; i++){
                         if (rowSum[i] == 1){
                             out.println("check rowSum[i] == 1");
-                            if (colSum[0] == 1 || colSum[0] == 4){
+                            if (colSum[0] == 4 || colSum[0] == 0){
                                 out.println("here1");//test
-                                play(i, 2, computer);
-                            }
-                            else if (colSum[2] == 1 && colSum[2] == 4){
-                                out.println("here2");//test
                                 play(i, 0, computer);
+                            }
+                            else if (colSum[2] == 4 || colSum[2] == 0){
+                                out.println("here2");//test
+                                play(i, 2, computer);
                             }
                         }
                         else if (rowSum[i] == 5){
@@ -121,9 +122,26 @@ public class TicTacToeBotClass extends TicTacToeClass{
                         }
                     }
                 }
-                
             }
-
+            if (XPlays == 2){
+                for (int i=0; i<rowSum.length; i++){
+                    if (rowSum[i] == 2){
+                        for (int j=0; j<getBoardArray()[i].length; j++){
+                            if (getBoardArray()[i][j].equals("")){
+                                play(i, j, computer);
+                            }
+                        }
+                    }
+                    else if (colSum[i] == 2){
+                        for (int j=0; j<getBoardArray()[i].length; j++){
+                            if (getBoardArray()[j][i].equals("")){
+                                play(j, i, computer);
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
         else if (computer.equals("O")){
             

@@ -71,6 +71,7 @@ public class TicTacToeBotController extends TicTacToeController{
         out.println(XPlays+" Xplays");//test
         out.println(OPlays+" OPlays");//test
         out.println(player+" player");
+        
         //Check whether it's player's turn
         if ((player.equals("X") && XPlays == OPlays) || (player.equals("O") && XPlays > OPlays)){
             
@@ -84,30 +85,35 @@ public class TicTacToeBotController extends TicTacToeController{
                 XPlays++;
                 playerCharacter = ("X");
             }
-            else 
+            else{
                 OPlays++;
                 playerCharacter = ("O");
+            }
             
-            if (gameBoard.winCon() == 1){
+            if (gameBoard.winCon().equals(player)){
                 writeFile(playerName);
                 out.println("X won");//text
                 winScene(actionEvent, playerName);
-            
             }
-            if (gameBoard.winCon() == 2){
-                writeFile("Computer");
-                out.println("O won");//text
-                winScene(actionEvent, "Computer");
-            }
-            if (gameBoard.winCon() == 3){
+            if (gameBoard.winCon().equals("D")){
                 winScene(actionEvent, "Draw");
             }
             boardChange(rowIndex, colIndex, playerCharacter);
-//            board.getChildren().remove(btn);
-        }
-            gameBoard.botPlay(XPlays, OPlays, computer, board);
+            
+            gameBoard.botPlay(XPlays, OPlays, computer);
             turnText.setText("Turn: "+playerName);
             XPlays++;
+            
+            if (gameBoard.winCon().equals(computer)){
+                writeFile("Computer");
+                out.println("X won");//text
+                winScene(actionEvent, "Computer");
+            }
+            if (gameBoard.winCon().equals("D")){
+                winScene(actionEvent, "Draw");
+            }
+            
+        }
         
     }
     public void boardChange(int rowIndex, int colIndex, String player){
@@ -123,7 +129,7 @@ public class TicTacToeBotController extends TicTacToeController{
                 break;
             }
         }
-        board.getChildren().remove(button);
+        button.setVisible(false);
         board.add(playerCharacter, colIndex, rowIndex);
     }
     //Game start events
@@ -176,7 +182,7 @@ public class TicTacToeBotController extends TicTacToeController{
         //Bot play if starting as X
         if (computer.equals("X")){
             out.println("everything");//test
-            gameBoard.botPlay(XPlays, OPlays, computer, board);
+            gameBoard.botPlay(XPlays, OPlays, computer);
             XPlays++;
             turnText.setText("Turn: ");
         }

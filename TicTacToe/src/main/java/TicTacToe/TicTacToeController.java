@@ -90,20 +90,20 @@ public class TicTacToeController {
 
         //Add character to baord and check for win
         gameBoard.getBoardArray()[rowIndex][colIndex] = character;
-        if (gameBoard.winCon() == 1){
-            writeFile(playerX);
-            out.println("X won");//text
-            winScene(actionEvent, playerX);
-            
-        }
-        if (gameBoard.winCon() == 2){
-            writeFile(playerO);
-            out.println("O won");//text
-            winScene(actionEvent, playerO);
-        }
-        if (gameBoard.winCon() == 3){
-            winScene(actionEvent, "Draw");
-        }
+//        if (gameBoard.winCon() == 1){
+//            writeFile(playerX);
+//            out.println("X won");//text
+//            winScene(actionEvent, playerX);
+//            
+//        }
+//        if (gameBoard.winCon() == 2){
+//            writeFile(playerO);
+//            out.println("O won");//text
+//            winScene(actionEvent, playerO);
+//        }
+//        if (gameBoard.winCon() == 3){
+//            winScene(actionEvent, "Draw");
+//        }
         board.add(textCharacter, colIndex, rowIndex);
         board.getChildren().remove(btn);
     }
@@ -129,12 +129,13 @@ public class TicTacToeController {
         Parent nextPane = loader.load();
         Scene winScene = new Scene(nextPane);
         
-        TicTacToeWinController controller = loader.getController();
-        controller.setWinText(player);
+        
         
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         stage.setScene(winScene);
         stage.show();
+        TicTacToeWinController controller = loader.getController();
+        controller.setWinText(player);
        
     }
     //Write to file method
