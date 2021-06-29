@@ -35,6 +35,8 @@ public class TicTacToeBotClass extends TicTacToeClass{
         //Create variables
         int[] rowSum = new int[3];
         int[] colSum = new int[3];
+        int mainDiago = 0;
+        int reverseDiago = 0;
         
         //Get rows and cols values
         for (int i=0; i<getBoardArray().length; i++){
@@ -43,6 +45,13 @@ public class TicTacToeBotClass extends TicTacToeClass{
                 colSum[i] += getBoardArray()[j][i];
             }
            
+        }
+        //Get diagonals values
+        for (int i=0, j=0; i<getBoardArray().length; i++, j++){
+            mainDiago += getBoardArray()[i][j];
+        }
+        for (int i=0, j=getBoardArray().length-1; i<getBoardArray().length; i++, j--){
+            reverseDiago += getBoardArray()[i][j];
         }
         //Bot moves
         if (computer.equals("X")){
@@ -69,7 +78,7 @@ public class TicTacToeBotClass extends TicTacToeClass{
                 out.println(getBoardArray()[1][1]+" 1 1");//test
                 if (getBoardArray()[1][1] == 4){
                     out.println("counterplay 1");
-                    if (rowSum[0] == 1 && colSum[0] == 0){
+                    if (rowSum[0] == 1 && colSum[0] == 1){
                         play(2, 2, computer);
                     }
                     else if (rowSum[2] == 1 && colSum[2] == 1){
@@ -121,48 +130,91 @@ public class TicTacToeBotClass extends TicTacToeClass{
                     }
                 }
             }
-            if (XPlays == 2){
-                //Check for opponent winning move
-                if (getBoardArray()[1][1] == 4){
-                    out.println("here");//test
-                    for (int j=0; j<rowSum.length; j++){
-                        if (rowSum[j] == 8){
-                            for (int k=0; k<getBoardArray()[j].length; k++){
-                                if (getBoardArray()[j][k] == 0){
-                                    play(j, k, computer);
-                                }
-                            }
-                        }
-                        else if (colSum[j] == 8){
-                            for (int k=0; k<getBoardArray()[k].length; k++){
-                                if (getBoardArray()[k][j] == 0){
-                                    play(k, j, computer);
-                                }
-                            }
-                        }
-                    }
-                }
+//            if (XPlays == 2){
+//                //Check for opponent winning move
+//                if (getBoardArray()[1][1] == 4){
+//                    out.println("here");//test
+//                    for (int i=0; i<rowSum.length; i++){
+//                        if (rowSum[i] == 8){
+//                            for (int j=0; j<getBoardArray()[i].length; j++){
+//                                if (getBoardArray()[i][j] == 0){
+//                                    play(i, j, computer);
+//                                }
+//                            }
+//                        }
+//                        else if (colSum[i] == 8){
+//                            for (int j=0; j<getBoardArray()[i].length; j++){
+//                                if (getBoardArray()[j][i] == 0){
+//                                    play(j, i, computer);
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//                else {
+//                    for (int i=0; i<rowSum.length; i++){
+//                        if (rowSum[i] == 2){
+//                            for (int j=0; j<getBoardArray()[i].length; j++){
+//                                if (getBoardArray()[i][j] == 0){
+//                                    play(i, j, computer);
+//                                }
+//                            }
+//                        }
+//                        else if (colSum[i] == 2){
+//                            for (int j=0; j<getBoardArray()[i].length; j++){
+//                                if (getBoardArray()[j][i] == 0){
+//                                    play(j, i, computer);
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+            if (XPlays >= 2){
                 for (int i=0; i<rowSum.length; i++){
                     if (rowSum[i] == 2){
-                        for (int j=0; j<getBoardArray()[i].length; j++){
-                            if (getBoardArray()[i][j] == 0){
-                                play(i, j, computer);
-                            }
-                        }
+                        playEmptySpace(i, computer, "row");
+                        break;
                     }
                     else if (colSum[i] == 2){
-                        for (int j=0; j<getBoardArray()[i].length; j++){
-                            if (getBoardArray()[j][i] == 0){
-                                play(j, i, computer);
-                            }
-                        }
+                        playEmptySpace(i, computer, "col");
+                        break;
                     }
+                    else if (rowSum[i] == 8){
+                        playEmptySpace(i, computer, "row");
+                        break;
+                    }
+                    else if (colSum[i] == 8){
+                        playEmptySpace(i, computer, "col");
+                        break;
+                    }
+//                    else if (rowSum[i] == 5){
+//                        for (int j=0; j<getBoardArray()[i].length; j++){
+//                            if (getBoardArray()[j][i] == 0){
+//                                play(j, i, computer);
+//                                break outerloop;
+//                            }
+//                        }
+//                    }
                 }
             }
             
         }
         else if (computer.equals("O")){
             
+        }
+    }
+    public void playEmptySpace(int i, String computer, String line){
+        for (int j=0; j<getBoardArray()[i].length; j++){
+            if (getBoardArray()[i][j] == 0 && line.equals("row")){
+                play(i, j, computer);
+                out.println("play empty space");//test
+                break;
+            }
+            else if (getBoardArray()[j][i] == 0 && line.equals("col")){
+                play(j, i, computer);
+                break;
+            }
         }
     }
 }
