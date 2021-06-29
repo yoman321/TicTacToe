@@ -30,7 +30,7 @@ import javafx.scene.text.Font;
 public class TicTacToeController {
     
     //Create object
-    TicTacToeClass gameBoard = new TicTacToeClass(new String[3][3]);
+    TicTacToeClass gameBoard = new TicTacToeClass(new int[3][3]);
     
     //Create fxml variables
     @FXML private GridPane board;
@@ -46,7 +46,7 @@ public class TicTacToeController {
     public void initialize(){
         for (int i=0; i<gameBoard.getBoardArray().length; i++){
             for (int j=0; j<gameBoard.getBoardArray()[i].length; j++){
-                gameBoard.getBoardArray()[i][j] = "";
+                gameBoard.getBoardArray()[i][j] = 0;
             }
         }
         turnText.setText("Turn: "+playerX);
@@ -89,7 +89,12 @@ public class TicTacToeController {
             turnText.setText("Turn: "+playerO);
 
         //Add character to baord and check for win
-        gameBoard.getBoardArray()[rowIndex][colIndex] = character;
+        if (character.equals("X")){
+            gameBoard.getBoardArray()[rowIndex][colIndex] = 1;
+        }
+        else if (character.equals("O")){
+            gameBoard.getBoardArray()[rowIndex][colIndex] = 4;
+        }
 //        if (gameBoard.winCon() == 1){
 //            writeFile(playerX);
 //            out.println("X won");//text

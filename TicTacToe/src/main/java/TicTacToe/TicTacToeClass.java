@@ -12,20 +12,20 @@ package TicTacToe;
  public class TicTacToeClass{
     
     //Create datafields
-    private String[][] boardArray = new String[3][3];
+    private int[][] boardArray = new int[3][3];
     
     //Create construcotrs
     public TicTacToeClass(){
         
     }
-    public TicTacToeClass(String[][] boardArray){
+    public TicTacToeClass(int[][] boardArray){
         this.boardArray = boardArray;
     }
     //Create getters and setters
-    public String[][] getBoardArray(){
+    public int[][] getBoardArray(){
         return boardArray;
     }
-    public void setBoardArray(String[][] boardArray){
+    public void setBoardArray(int[][] boardArray){
         this.boardArray = boardArray;
     }
     //Create methods
@@ -37,10 +37,10 @@ package TicTacToe;
         //Check for row wins
         for (int i=0; i<boardArray.length; i++){
             for (int j=0; j<boardArray[i].length; j++){
-                if (boardArray[i][j].equals("X")){
+                if (boardArray[i][j] == 1){
                     Xcount++;
                 }
-                if (boardArray[i][j].equals("O")){
+                if (boardArray[i][j] == 4){
                     Ocount++;
                 }
                 if (Xcount == 3){
@@ -58,10 +58,10 @@ package TicTacToe;
         //Check for column wins
         for (int i=0; i<boardArray.length; i++){
             for (int j=0; j<boardArray.length; j++){
-                if (boardArray[j][i].equals("X")){
+                if (boardArray[j][i] == 1){
                     Xcount++;
                 }
-               if (boardArray[j][i].equals("O")){
+               if (boardArray[j][i] == 4){
                    Ocount++;
                }
                if (Xcount == 3){
@@ -78,10 +78,10 @@ package TicTacToe;
         
         //Check for main diagonals wins
         for (int i=0, j=0; i<boardArray.length; i++, j++){
-            if (boardArray[i][j].equals("X")){
+            if (boardArray[i][j] == 1){
                 Xcount++;
             }
-            if (boardArray[i][j].equals("O")){
+            if (boardArray[i][j] == 4){
                  Ocount++;
             }
             if (Xcount == 3){
@@ -96,10 +96,10 @@ package TicTacToe;
         
         //Check for inverse diagonals wins
         for (int i=boardArray.length-1, j=0; i>-1; i--, j++){
-            if (boardArray[i][j].equals("X")){
+            if (boardArray[i][j] == 1){
                 Xcount++;
             }
-            if (boardArray[i][j].equals("O")){
+            if (boardArray[i][j] == 4){
                  Ocount++;
             }
             if (Xcount == 3){
@@ -114,7 +114,7 @@ package TicTacToe;
         int drawCount = 0;
         for (int i=0; i<boardArray.length; i++){
             for (int j=0; j<boardArray[i].length; j++){
-                if (boardArray[i][j] != ""){
+                if (boardArray[i][j] != 0){
                     drawCount++;
                 }
             }

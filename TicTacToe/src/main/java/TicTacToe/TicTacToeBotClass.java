@@ -17,12 +17,17 @@ public class TicTacToeBotClass extends TicTacToeClass{
     public TicTacToeBotClass(){
         
     }
-    public TicTacToeBotClass(String[][] boardArray){
+    public TicTacToeBotClass(int[][] boardArray){
         super(boardArray);
     }
     //Create methods
     public void play(int rowIndex, int colIndex, String player){
-        getBoardArray()[rowIndex][colIndex] = player;
+        if (player.equals("X")){
+            getBoardArray()[rowIndex][colIndex] = 1;
+        }
+        else if (player.equals("O")){
+            getBoardArray()[rowIndex][colIndex] = 4;
+        }
         TicTacToeBotController.botControllerInstance.boardChange(rowIndex, colIndex, player);
     }
     public void botPlay(int XPlays, int OPlays, String computer){
@@ -34,19 +39,10 @@ public class TicTacToeBotClass extends TicTacToeClass{
         //Get rows and cols values
         for (int i=0; i<getBoardArray().length; i++){
             for (int j=0; j<getBoardArray()[i].length; j++){
-                if (getBoardArray()[i][j].equals("X")){
-                    rowSum[i] += 1;
-                }
-                else if (getBoardArray()[i][j].equals("O")){
-                    rowSum[i] += 4;
-                }
-                if (getBoardArray()[j][i].equals("X")){
-                    colSum[i] += 1;
-                }
-                else if (getBoardArray()[j][i].equals("O")){ 
-                    colSum[i] += 4;
-                }
+                rowSum[i] += getBoardArray()[i][j];
+                colSum[i] += getBoardArray()[j][i];
             }
+           
         }
         //Bot moves
         if (computer.equals("X")){
@@ -70,7 +66,9 @@ public class TicTacToeBotClass extends TicTacToeClass{
             }
             if (XPlays == 1){
                 out.println("plays1");
-                if (rowSum[1] == 4 && colSum[1] == 4){
+                out.println(getBoardArray()[1][1]+" 1 1");//test
+                if (getBoardArray()[1][1] == 4){
+                    out.println("counterplay 1");
                     if (rowSum[0] == 1 && colSum[0] == 0){
                         play(2, 2, computer);
                     }
@@ -124,17 +122,37 @@ public class TicTacToeBotClass extends TicTacToeClass{
                 }
             }
             if (XPlays == 2){
+                //Check for opponent winning move
+                if (getBoardArray()[1][1] == 4){
+                    out.println("here");//test
+                    for (int j=0; j<rowSum.length; j++){
+                        if (rowSum[j] == 8){
+                            for (int k=0; k<getBoardArray()[j].length; k++){
+                                if (getBoardArray()[j][k] == 0){
+                                    play(j, k, computer);
+                                }
+                            }
+                        }
+                        else if (colSum[j] == 8){
+                            for (int k=0; k<getBoardArray()[k].length; k++){
+                                if (getBoardArray()[k][j] == 0){
+                                    play(k, j, computer);
+                                }
+                            }
+                        }
+                    }
+                }
                 for (int i=0; i<rowSum.length; i++){
                     if (rowSum[i] == 2){
                         for (int j=0; j<getBoardArray()[i].length; j++){
-                            if (getBoardArray()[i][j].equals("")){
+                            if (getBoardArray()[i][j] == 0){
                                 play(i, j, computer);
                             }
                         }
                     }
                     else if (colSum[i] == 2){
                         for (int j=0; j<getBoardArray()[i].length; j++){
-                            if (getBoardArray()[j][i].equals("")){
+                            if (getBoardArray()[j][i] == 0){
                                 play(j, i, computer);
                             }
                         }

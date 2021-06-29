@@ -34,7 +34,7 @@ public class TicTacToeBotController extends TicTacToeController{
     public static TicTacToeBotController botControllerInstance;
     
     //Create object
-    TicTacToeBotClass gameBoard = new TicTacToeBotClass(new String[3][3]);
+    TicTacToeBotClass gameBoard = new TicTacToeBotClass(new int[3][3]);
     
     //Create fxml variables
     @FXML private GridPane board;
@@ -56,7 +56,7 @@ public class TicTacToeBotController extends TicTacToeController{
     public void initialize(){
         for (int i=0; i<gameBoard.getBoardArray().length; i++){
             for (int j=0; j<gameBoard.getBoardArray()[i].length; j++){
-                gameBoard.getBoardArray()[i][j] = "";
+                gameBoard.getBoardArray()[i][j] = 0;
             }
         }
     }
@@ -80,7 +80,12 @@ public class TicTacToeBotController extends TicTacToeController{
             String playerCharacter = " ";
             
             //Add character to board and check for win
-            gameBoard.getBoardArray()[rowIndex][colIndex] = player;
+            if (player.equals("X")){
+                gameBoard.getBoardArray()[rowIndex][colIndex] = 1;
+            }
+            else if (player.equals("O")){
+                gameBoard.getBoardArray()[rowIndex][colIndex] = 4;
+            }
             if (player.equals("X")){
                 XPlays++;
                 playerCharacter = ("X");
