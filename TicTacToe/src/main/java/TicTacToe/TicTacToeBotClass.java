@@ -130,47 +130,53 @@ public class TicTacToeBotClass extends TicTacToeClass{
                     }
                 }
             }
-//            if (XPlays == 2){
-//                //Check for opponent winning move
-//                if (getBoardArray()[1][1] == 4){
-//                    out.println("here");//test
-//                    for (int i=0; i<rowSum.length; i++){
-//                        if (rowSum[i] == 8){
-//                            for (int j=0; j<getBoardArray()[i].length; j++){
-//                                if (getBoardArray()[i][j] == 0){
-//                                    play(i, j, computer);
-//                                }
-//                            }
-//                        }
-//                        else if (colSum[i] == 8){
-//                            for (int j=0; j<getBoardArray()[i].length; j++){
-//                                if (getBoardArray()[j][i] == 0){
-//                                    play(j, i, computer);
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//                else {
-//                    for (int i=0; i<rowSum.length; i++){
-//                        if (rowSum[i] == 2){
-//                            for (int j=0; j<getBoardArray()[i].length; j++){
-//                                if (getBoardArray()[i][j] == 0){
-//                                    play(i, j, computer);
-//                                }
-//                            }
-//                        }
-//                        else if (colSum[i] == 2){
-//                            for (int j=0; j<getBoardArray()[i].length; j++){
-//                                if (getBoardArray()[j][i] == 0){
-//                                    play(j, i, computer);
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-            if (XPlays >= 2){
+            //Set up for winning move
+            if (XPlays == 2 && getBoardArray()[1][1] != 4){
+                Boolean winMove = false;
+                for (int i=0; i<rowSum.length; i++){
+                    if (rowSum[i] == 2){
+                        playEmptySpace(i, computer, "row");
+                        winMove = true;
+                        break;
+                    }
+                    else if (colSum[i] == 2){
+                        playEmptySpace(i, computer, "col");
+                        winMove = true;
+                        break;
+                    }
+                    else if (rowSum[i] == 8){
+                        playEmptySpace(i, computer, "row");
+                        winMove = true;
+                        break;
+                    }
+                    else if (colSum[i] == 8){
+                        playEmptySpace(i, computer, "col");
+                        winMove = true;
+                        break;
+                    }
+                }
+                if (winMove == false){
+                    for (int i=0; i<rowSum.length; i++){
+                        if (rowSum[i] == 1){
+                            if (getBoardArray()[i][0] == 0){
+                                play(i, 0, computer);
+                            }
+                            else if (getBoardArray()[i][2] == 0){
+                                play(i, 2, computer);
+                            }
+                        }
+                        else if (colSum[i] == 1){
+                            if (getBoardArray()[0][i] == 0){
+                                play(0, i, computer);
+                            }
+                            else if (getBoardArray()[2][i] == 0){
+                                play(2, i, computer);
+                            }
+                        }
+                    }
+                }
+            }
+            if (XPlays >= 3 || (XPlays == 2 && getBoardArray()[1][1] == 4)){
                 for (int i=0; i<rowSum.length; i++){
                     if (rowSum[i] == 2){
                         playEmptySpace(i, computer, "row");
