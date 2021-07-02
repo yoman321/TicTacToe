@@ -339,7 +339,7 @@ public class TicTacToeBotClass extends TicTacToeClass{
                                 play(2, 1, computer);
                                 played = true;
                             }
-                            else if (OPlays > 4){
+                            else if (OPlays > 3){
                                 played = true;
                                 break;
                             }

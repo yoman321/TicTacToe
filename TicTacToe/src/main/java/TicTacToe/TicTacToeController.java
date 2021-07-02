@@ -133,12 +133,11 @@ public class TicTacToeController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TicTacToeWinFXML.fxml"));
         Parent nextPane = loader.load();
         Scene winScene = new Scene(nextPane);
-        
-        
-        
+       
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         stage.setScene(winScene);
         stage.show();
+        
         TicTacToeWinController controller = loader.getController();
         controller.setWinText(player);
        

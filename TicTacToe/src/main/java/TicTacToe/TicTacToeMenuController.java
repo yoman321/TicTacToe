@@ -56,10 +56,10 @@ public class TicTacToeMenuController {
         namePane.setVisible(true);
         
         //test
-//        playerX.setText("Computer");
-//        playerX.setEditable(false);
-        playerO.setText("Computer");
-        playerO.setEditable(false);
+        playerX.setText("Computer");
+        playerX.setEditable(false);
+//        playerO.setText("Computer");
+//        playerO.setEditable(false);
         botGame = true;
     }
     public void onClickRecords(ActionEvent e) throws Exception{

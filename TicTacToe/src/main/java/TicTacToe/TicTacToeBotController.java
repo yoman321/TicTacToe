@@ -99,9 +99,9 @@ public class TicTacToeBotController extends TicTacToeController{
                 out.println("X won");//text
                 winScene(actionEvent, playerName);
             }
-            if (gameBoard.winCon().equals("D")){
-                winScene(actionEvent, "Draw");
-            }
+//            if (gameBoard.winCon().equals("D")){
+//                winScene(actionEvent, "Draw");
+//            }
             boardChange(rowIndex, colIndex, playerCharacter);
             
             gameBoard.botPlay(XPlays, OPlays, computer);
