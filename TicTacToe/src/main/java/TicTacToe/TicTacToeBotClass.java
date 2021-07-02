@@ -319,7 +319,8 @@ public class TicTacToeBotClass extends TicTacToeClass{
                         playEmptySpace(i, computer, "reverseDiago");
                         break;
                     }
-                    else{
+                    else if (i == 2){
+                        out.println("else");
                         int random = (int) (Math.random() * 4);
                         boolean played = false;
                         while (!played){
