@@ -212,10 +212,143 @@ public class TicTacToeBotClass extends TicTacToeClass{
                     }
                 }
             }
-            
         }
+        //Bot as O
         else if (computer.equals("O")){
-            
+            if (OPlays == 0){
+                if (getBoardArray()[1][1] == 0){
+                    play(1, 1, computer);
+                }
+                else if (getBoardArray()[1][1] != 0){
+                    int random = (int) (Math.random() * 4);
+                    if (random == 0){
+                        play(0, 0, computer);
+                    }
+                    else if (random == 1){
+                        play(0, 2, computer);
+                    }
+                    else if (random == 2){
+                        play(2, 0, computer);
+                    }
+                    else if (random == 3){
+                        play(2, 2, computer);
+                    }
+                }
+            }
+            else if (OPlays == 1 && getBoardArray()[1][1] != 4){
+                boolean played = false;
+                for (int i=0; i<rowSum.length; i++){
+                    if (rowSum[i] == 2){
+                        playEmptySpace(i, computer, "row");
+                        played = true;
+                        break;
+                    }
+                    else if (colSum[i] == 2){
+                        playEmptySpace(i, computer, "col");
+                        played = true;
+                        break;
+                    }
+                    else if (mainDiago == 2){
+                        playEmptySpace(i, computer, "mainDiago");
+                        played = true;
+                        break;
+                    }
+                    else if (reverseDiago == 2){
+                        playEmptySpace(i, computer, "reverseDiago");
+                        played = true;
+                        break;
+                    }
+                }
+                if (!played){
+                    outerloop:
+                    for (int i=0; i<rowSum.length; i+=2){
+                        for (int j=0; j<colSum.length; j+=2){
+                            if (rowSum[i] == 4 && colSum[j] == 4){
+                                if (i == 0 && getBoardArray()[2][j] == 0){
+                                    play(2, j, computer);
+                                    break outerloop;
+                                }
+                                else if (i == 2 && getBoardArray()[0][j] == 0){
+                                    play(0, j, computer);
+                                    break outerloop;
+                                }
+                                else if (j == 0 && getBoardArray()[i][0] == 0){
+                                    play(i, 2, computer);
+                                    break outerloop;
+                                } 
+                                else if (j == 2 && getBoardArray()[i][2] == 0){
+                                    play(i, 0, computer);
+                                    break outerloop;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (OPlays >= 2 || (OPlays == 1 && getBoardArray()[1][1] == 4)){
+                for (int i=0; i<rowSum.length; i++){
+                    if (rowSum[i] == 8){
+                        playEmptySpace(i, computer, "row");
+                        break;
+                    }
+                    else if (colSum[i] == 8){
+                        playEmptySpace(i, computer, "col");
+                        break;
+                    }
+                    else if (rowSum[i] == 2){
+                        playEmptySpace(i, computer, "row");
+                        break;
+                    }
+                    else if (colSum[i] == 2){
+                        playEmptySpace(i, computer, "col");
+                        break;
+                    }
+                    else if (mainDiago == 8){
+                        playEmptySpace(i, computer, "mainDiago");
+                        break;
+                    }
+                    else if (mainDiago == 2){
+                        playEmptySpace(i, computer, "mainDiago");
+                        break;
+                    }
+                    else if (reverseDiago == 8){
+                        playEmptySpace(i, computer, "reverseDiago");
+                        break;
+                    }
+                    else if (reverseDiago == 2){
+                        playEmptySpace(i, computer, "reverseDiago");
+                        break;
+                    }
+                    else{
+                        int random = (int) (Math.random() * 4);
+                        boolean played = false;
+                        while (!played){
+                            if (random == 0 && getBoardArray()[0][1] == 0){
+                                play(0, 1, computer);
+                                played = true;
+                            }
+                            else if (random == 1 && getBoardArray()[1][0] == 0){
+                                play(1, 0, computer);
+                                played = true;
+                            }
+                            else if (random == 2 && getBoardArray()[1][2] == 0){
+                                play(1, 2, computer);
+                                played = true;
+                            }
+                            else if (random == 3 && getBoardArray()[2][1] == 0){
+                                play(2, 1, computer);
+                                played = true;
+                            }
+                            else if (OPlays > 4){
+                                played = true;
+                                break;
+                            }
+                            random = (int) (Math.random() * 4);
+                        }
+                        break;
+                    }
+                }
+            }
         }
     }
     public void playEmptySpace(int i, String character, String line){

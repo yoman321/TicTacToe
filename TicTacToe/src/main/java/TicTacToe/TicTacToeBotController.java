@@ -70,7 +70,6 @@ public class TicTacToeBotController extends TicTacToeController{
         int colIndex = board.getColumnIndex(btn);
         out.println(XPlays+" Xplays");//test
         out.println(OPlays+" OPlays");//test
-        out.println(player+" player");
         
         //Check whether it's player's turn
         if ((player.equals("X") && XPlays == OPlays) || (player.equals("O") && XPlays > OPlays)){
@@ -107,7 +106,12 @@ public class TicTacToeBotController extends TicTacToeController{
             
             gameBoard.botPlay(XPlays, OPlays, computer);
             turnText.setText("Turn: "+playerName);
-            XPlays++;
+            if (computer.equals("X")){
+                XPlays++;
+            }
+            else{
+                OPlays++;
+            }
             
             if (gameBoard.winCon().equals(computer)){
                 writeFile("Computer");
