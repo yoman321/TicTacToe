@@ -2,5 +2,5 @@
 1 25
 1 25
 2 3
-Computer 62
+Computer 69
 ` 2

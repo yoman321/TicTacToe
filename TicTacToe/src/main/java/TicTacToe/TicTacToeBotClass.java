@@ -194,14 +194,22 @@ public class TicTacToeBotClass extends TicTacToeClass{
                         playEmptySpace(i, computer, "col");
                         break;
                     }
-//                    else if (rowSum[i] == 5){
-//                        for (int j=0; j<getBoardArray()[i].length; j++){
-//                            if (getBoardArray()[j][i] == 0){
-//                                play(j, i, computer);
-//                                break outerloop;
-//                            }
-//                        }
-//                    }
+                    else if (mainDiago == 2){
+                        playEmptySpace(i, computer, "mainDiago");
+                        break;
+                    }
+                    else if (mainDiago == 8){
+                        playEmptySpace(i, computer, "mainDiago");
+                        break;
+                    }
+                    else if (reverseDiago == 2){
+                        playEmptySpace(i, computer, "reverseDiago");
+                        break;
+                    }
+                    else if (reverseDiago == 8){
+                        playEmptySpace(i, computer, "reverseDiago");
+                        break;
+                    }
                 }
             }
             
@@ -210,16 +218,34 @@ public class TicTacToeBotClass extends TicTacToeClass{
             
         }
     }
-    public void playEmptySpace(int i, String computer, String line){
-        for (int j=0; j<getBoardArray()[i].length; j++){
-            if (getBoardArray()[i][j] == 0 && line.equals("row")){
-                play(i, j, computer);
-                out.println("play empty space");//test
-                break;
+    public void playEmptySpace(int i, String character, String line){
+        if (line.equals("row") || line.equals("col")){
+            for (int j=0; j<getBoardArray()[i].length; j++){
+                if (getBoardArray()[i][j] == 0 && line.equals("row")){
+                    play(i, j, character);
+                    out.println("play empty space");//test
+                    break;
+                }
+                else if (getBoardArray()[j][i] == 0 && line.equals("col")){
+                    play(j, i, character);
+                    break;
+                }
             }
-            else if (getBoardArray()[j][i] == 0 && line.equals("col")){
-                play(j, i, computer);
-                break;
+        }
+        else if (line.equals("mainDiago")){
+            for (int j=0, k=0; j<getBoardArray().length; j++, k++){
+                if (getBoardArray()[j][k] == 0){
+                    play(j, k, character);
+                    break;
+                }
+            }
+        }
+        else if (line.equals("reverseDiago")){
+            for (int j=0, k=getBoardArray().length-1; i<getBoardArray().length; j++, k--){
+                if (getBoardArray()[j][k] == 0){
+                    play(j, k, character);
+                    break;
+                }
             }
         }
     }
