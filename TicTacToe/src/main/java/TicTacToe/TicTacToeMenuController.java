@@ -73,12 +73,13 @@ public class TicTacToeMenuController {
             playerO.setEditable(false);
         }
         else if (btn.getText().equals("Random")){
-            int random = (int)Math.random() * 2;
+            int random = (int)(Math.random() * 2);
+            out.println("random "+random);//test
             if (random == 0){
                 playerX.setText("Computer");
                 playerX.setEditable(false);
             }
-            else{
+            else if (random == 1){
                 playerO.setText("Computer");
                 playerO.setEditable(false);
             }

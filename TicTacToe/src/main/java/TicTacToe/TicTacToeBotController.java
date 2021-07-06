@@ -24,6 +24,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.collections.ObservableList;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 /**
  *
  * @author luoph
@@ -73,7 +75,6 @@ public class TicTacToeBotController extends TicTacToeController{
         
         //Check whether it's player's turn
         if ((player.equals("X") && XPlays == OPlays) || (player.equals("O") && XPlays > OPlays)){
-            
             out.println("inside");//test
             //Create variable
             String playerCharacter = " ";
@@ -99,29 +100,46 @@ public class TicTacToeBotController extends TicTacToeController{
                 out.println("X won");//text
                 winScene(actionEvent, playerName);
             }
-//            if (gameBoard.winCon().equals("D")){
-//                winScene(actionEvent, "Draw");
-//            }
+
             boardChange(rowIndex, colIndex, playerCharacter);
             
-            gameBoard.botPlay(XPlays, OPlays, computer);
-            turnText.setText("Turn: "+playerName);
-            if (computer.equals("X")){
-                XPlays++;
-            }
-            else{
-                OPlays++;
-            }
-            
-            if (gameBoard.winCon().equals(computer)){
-                writeFile("Computer");
-                out.println("X won");//text
-                winScene(actionEvent, "Computer");
-            }
-            if (gameBoard.winCon().equals("D")){
-                winScene(actionEvent, "Draw");
-            }
-            
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(event -> {
+                try{
+                    gameBoard.botPlay(XPlays, OPlays, computer);
+                    turnText.setText("Turn: "+playerName);
+                        
+                    if (computer.equals("X")){
+                        XPlays++;
+                    }
+                    else{
+                        OPlays++;
+                    }
+                    PauseTransition winPause = new PauseTransition(Duration.seconds(1));
+                    winPause.setOnFinished(e -> {
+                        try{
+                            if (gameBoard.winCon().equals(computer)){
+                                writeFile("Computer");
+                                out.println("X won");//text
+                                winScene(actionEvent, "Computer");
+                            }
+                            if (gameBoard.winCon().equals("D")){
+                                winScene(actionEvent, "Draw");
+                            }
+                        }
+                        catch (Exception ex){
+                            ex.printStackTrace();
+                        }
+                    });
+                    winPause.play();
+                        
+                }
+                catch(Exception ex){
+                    ex.printStackTrace();
+                }
+            });
+            pause.play();
+        
         }
         
     }
@@ -191,10 +209,14 @@ public class TicTacToeBotController extends TicTacToeController{
         //Bot play if starting as X
         try{
             if (computer.equals("X")){
-                out.println("everything");//test
-                gameBoard.botPlay(XPlays, OPlays, computer);
-                XPlays++;
-                turnText.setText("Turn: ");
+                PauseTransition pause = new PauseTransition(Duration.seconds(4));
+                pause.setOnFinished(event -> {
+                    out.println("everything");//test
+                    gameBoard.botPlay(XPlays, OPlays, computer);
+                    XPlays++;
+                    turnText.setText("Turn: ");
+                });
+                pause.play();
             }
         }
         catch (Exception ex){

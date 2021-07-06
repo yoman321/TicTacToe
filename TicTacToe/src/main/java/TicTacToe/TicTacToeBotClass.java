@@ -177,37 +177,46 @@ public class TicTacToeBotClass extends TicTacToeClass{
                 }
             }
             if (XPlays >= 3 || (XPlays == 2 && getBoardArray()[1][1] == 4)){
+                boolean played = false;
                 for (int i=0; i<rowSum.length; i++){
                     if (rowSum[i] == 2){
                         playEmptySpace(i, computer, "row");
+                        played = true;
                         break;
                     }
                     else if (colSum[i] == 2){
                         playEmptySpace(i, computer, "col");
+                        played = true;
                         break;
                     }
                     else if (rowSum[i] == 8){
                         playEmptySpace(i, computer, "row");
+                        played = true;
                         break;
                     }
                     else if (colSum[i] == 8){
                         playEmptySpace(i, computer, "col");
+                        played = true;       
                         break;
                     }
                     else if (mainDiago == 2){
                         playEmptySpace(i, computer, "mainDiago");
+                        played = true;   
                         break;
                     }
                     else if (mainDiago == 8){
                         playEmptySpace(i, computer, "mainDiago");
+                        played = true;   
                         break;
                     }
                     else if (reverseDiago == 2){
                         playEmptySpace(i, computer, "reverseDiago");
+                        played = true;
                         break;
                     }
                     else if (reverseDiago == 8){
                         playEmptySpace(i, computer, "reverseDiago");
+                        played = true;
                         break;
                     }
                 }
@@ -319,7 +328,7 @@ public class TicTacToeBotClass extends TicTacToeClass{
                         playEmptySpace(i, computer, "reverseDiago");
                         break;
                     }
-                    else if (i == 2){
+                    else if (i == 2 && OPlays == 1){
                         out.println("else");
                         int random = (int) (Math.random() * 4);
                         boolean played = false;
@@ -347,6 +356,18 @@ public class TicTacToeBotClass extends TicTacToeClass{
                             random = (int) (Math.random() * 4);
                         }
                         break;
+                    }
+                    else if (i == 2 && OPlays <= 2){
+                        out.println("no winning move");//test
+                        outerloop:
+                        for (int j=0; j<getBoardArray().length; j++){
+                            for (int k=0; k<getBoardArray().length; k++){
+                                if (getBoardArray()[j][k] == 0){
+                                    play(j, k, computer);
+                                    break outerloop;
+                                }
+                            }    
+                        }
                     }
                 }
             }
