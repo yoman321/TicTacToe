@@ -18,6 +18,7 @@ import static java.lang.System.out;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
 import java.io.*;
+import javafx.scene.control.Button;
 
 /**
  *
@@ -28,6 +29,7 @@ public class TicTacToeMenuController {
     //Create FXML variables
     @FXML private Pane mainPane;
     @FXML private Pane namePane;
+    @FXML private Pane choosePane;
     @FXML private TextField playerX;
     @FXML private TextField playerO;
     
@@ -37,6 +39,7 @@ public class TicTacToeMenuController {
     //Create initialize method
     public void initialize(){
         namePane.setVisible(false);
+        choosePane.setVisible(false);
         playerX.setEditable(true);
         playerO.setEditable(true);
     }
@@ -53,13 +56,33 @@ public class TicTacToeMenuController {
         
         //Set pane visiblity
         mainPane.setVisible(false);
+        choosePane.setVisible(true);
+    }
+    public void onclickPlayAs(ActionEvent e){
+        
+        Button btn = (Button)e.getSource();
+        choosePane.setVisible(false);
         namePane.setVisible(true);
         
-        //test
-//        playerX.setText("Computer");
-//        playerX.setEditable(false);
-        playerO.setText("Computer");
-        playerO.setEditable(false);
+        if (btn.getText().equals("O")){
+            playerX.setText("Computer");
+            playerX.setEditable(false);
+        }
+        else if (btn.getText().equals("X")){
+            playerO.setText("Computer");
+            playerO.setEditable(false);
+        }
+        else if (btn.getText().equals("Random")){
+            int random = (int)Math.random() * 2;
+            if (random == 0){
+                playerX.setText("Computer");
+                playerX.setEditable(false);
+            }
+            else{
+                playerO.setText("Computer");
+                playerO.setEditable(false);
+            }
+        }
         botGame = true;
     }
     public void onClickRecords(ActionEvent e) throws Exception{

@@ -189,11 +189,16 @@ public class TicTacToeBotController extends TicTacToeController{
         thread.start();
         
         //Bot play if starting as X
-        if (computer.equals("X")){
-            out.println("everything");//test
-            gameBoard.botPlay(XPlays, OPlays, computer);
-            XPlays++;
-            turnText.setText("Turn: ");
+        try{
+            if (computer.equals("X")){
+                out.println("everything");//test
+                gameBoard.botPlay(XPlays, OPlays, computer);
+                XPlays++;
+                turnText.setText("Turn: ");
+            }
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 }

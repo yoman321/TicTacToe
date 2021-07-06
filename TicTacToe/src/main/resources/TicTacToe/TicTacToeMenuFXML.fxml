@@ -70,5 +70,29 @@
             </Button>
          </children>
       </Pane>
+      <Pane fx:id="choosePane" prefHeight="912.0" prefWidth="700.0">
+         <children>
+            <Button layoutX="307.0" layoutY="439.0" mnemonicParsing="false" onAction="#onclickPlayAs" text="X">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Text layoutX="297.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Play As:">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+            </Text>
+            <Button layoutX="357.0" layoutY="439.0" mnemonicParsing="false" onAction="#onclickPlayAs" text="O">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="307.0" layoutY="488.0" mnemonicParsing="false" onAction="#onclickPlayAs" text="Random">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
