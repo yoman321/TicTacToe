@@ -189,6 +189,16 @@ public class TicTacToeBotClass extends TicTacToeClass{
                         played = true;
                         break;
                     }
+                    else if (reverseDiago == 2){
+                        playEmptySpace(i, computer, "reverseDiago");
+                        played = true;
+                        break;
+                    }
+                    else if (mainDiago == 2){
+                        playEmptySpace(i, computer, "mainDiago");
+                        played = true;   
+                        break;
+                    }
                     else if (rowSum[i] == 8){
                         playEmptySpace(i, computer, "row");
                         played = true;
@@ -199,19 +209,9 @@ public class TicTacToeBotClass extends TicTacToeClass{
                         played = true;       
                         break;
                     }
-                    else if (mainDiago == 2){
-                        playEmptySpace(i, computer, "mainDiago");
-                        played = true;   
-                        break;
-                    }
                     else if (mainDiago == 8){
                         playEmptySpace(i, computer, "mainDiago");
                         played = true;   
-                        break;
-                    }
-                    else if (reverseDiago == 2){
-                        playEmptySpace(i, computer, "reverseDiago");
-                        played = true;
                         break;
                     }
                     else if (reverseDiago == 8){
@@ -294,7 +294,7 @@ public class TicTacToeBotClass extends TicTacToeClass{
                     }
                 }
             }
-            else if (OPlays >= 2 || (OPlays == 1 && getBoardArray()[1][1] == 4)){
+            else if ((OPlays >= 2 && OPlays < 4) || (OPlays == 1 && getBoardArray()[1][1] == 4)){
                 for (int i=0; i<rowSum.length; i++){
                     if (rowSum[i] == 8){
                         playEmptySpace(i, computer, "row");
@@ -302,6 +302,14 @@ public class TicTacToeBotClass extends TicTacToeClass{
                     }
                     else if (colSum[i] == 8){
                         playEmptySpace(i, computer, "col");
+                        break;
+                    }
+                    else if (reverseDiago == 8){
+                        playEmptySpace(i, computer, "reverseDiago");
+                        break;
+                    }
+                    else if (mainDiago == 8){
+                        playEmptySpace(i, computer, "mainDiago");
                         break;
                     }
                     else if (rowSum[i] == 2){
@@ -312,16 +320,8 @@ public class TicTacToeBotClass extends TicTacToeClass{
                         playEmptySpace(i, computer, "col");
                         break;
                     }
-                    else if (mainDiago == 8){
-                        playEmptySpace(i, computer, "mainDiago");
-                        break;
-                    }
                     else if (mainDiago == 2){
                         playEmptySpace(i, computer, "mainDiago");
-                        break;
-                    }
-                    else if (reverseDiago == 8){
-                        playEmptySpace(i, computer, "reverseDiago");
                         break;
                     }
                     else if (reverseDiago == 2){
@@ -368,6 +368,7 @@ public class TicTacToeBotClass extends TicTacToeClass{
                                 }
                             }    
                         }
+                        break;
                     }
                 }
             }

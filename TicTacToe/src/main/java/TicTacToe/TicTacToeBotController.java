@@ -70,12 +70,9 @@ public class TicTacToeBotController extends TicTacToeController{
         Button btn = (Button)actionEvent.getSource();
         int rowIndex = board.getRowIndex(btn);
         int colIndex = board.getColumnIndex(btn);
-        out.println(XPlays+" Xplays");//test
-        out.println(OPlays+" OPlays");//test
         
         //Check whether it's player's turn
         if ((player.equals("X") && XPlays == OPlays) || (player.equals("O") && XPlays > OPlays)){
-            out.println("inside");//test
             //Create variable
             String playerCharacter = " ";
             
@@ -97,15 +94,15 @@ public class TicTacToeBotController extends TicTacToeController{
             
             if (gameBoard.winCon().equals(player)){
                 writeFile(playerName);
-                out.println("X won");//text
+                out.println("player");//test
                 winScene(actionEvent, playerName);
             }
 
             boardChange(rowIndex, colIndex, playerCharacter);
-            
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.setOnFinished(event -> {
                 try{
+                    out.println("OUTSIDE1");//TEST
                     gameBoard.botPlay(XPlays, OPlays, computer);
                     turnText.setText("Turn: "+playerName);
                         
@@ -115,24 +112,27 @@ public class TicTacToeBotController extends TicTacToeController{
                     else{
                         OPlays++;
                     }
+                    out.println("outside");//test
                     PauseTransition winPause = new PauseTransition(Duration.seconds(1));
-                    winPause.setOnFinished(e -> {
-                        try{
-                            if (gameBoard.winCon().equals(computer)){
-                                writeFile("Computer");
-                                out.println("X won");//text
-                                winScene(actionEvent, "Computer");
+                    if (gameBoard.winCon().equals(computer) || gameBoard.winCon().equals("D")){
+                        winPause.setOnFinished(e -> {
+                            try{
+                                if (gameBoard.winCon().equals(computer)){
+                                    writeFile("Computer");
+                                    out.println("computer");//test
+                                    winScene(actionEvent, "Computer");
+                                }
+                                else if (gameBoard.winCon().equals("D")){
+                                    out.println("draw1");//test
+                                    winScene(actionEvent, "Draw");
+                                }
                             }
-                            if (gameBoard.winCon().equals("D")){
-                                winScene(actionEvent, "Draw");
+                            catch (Exception ex){
+                                ex.printStackTrace();
                             }
-                        }
-                        catch (Exception ex){
-                            ex.printStackTrace();
-                        }
-                    });
-                    winPause.play();
-                        
+                        });
+                        winPause.play();
+                    }
                 }
                 catch(Exception ex){
                     ex.printStackTrace();
@@ -152,7 +152,6 @@ public class TicTacToeBotController extends TicTacToeController{
         for (Node node: childrens){
             if (node instanceof Button && board.getRowIndex(node) == rowIndex && board.getColumnIndex(node) == colIndex){
                 button = node;
-                out.println("something");
                 break;
             }
         }
